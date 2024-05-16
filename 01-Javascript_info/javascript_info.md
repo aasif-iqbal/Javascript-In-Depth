@@ -1,0 +1,1 @@
+Javascript is weak typed,dynamic language.
