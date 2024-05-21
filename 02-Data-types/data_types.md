@@ -159,7 +159,6 @@ JavaScript is a weakly typed language. This means that you can often use a value
 
 [Type coercion - freecodecamp](https://www.freecodecamp.org/news/js-type-coercion-explained-27ba3d9a2839/)
 
-
 ## Type Conversion
 
 Type conversion (or typecasting) means transfer of data from one data type to another. Implicit conversion happens when the compiler (for compiled languages) or runtime (for script languages like JavaScript) automatically converts data types. The source code can also explicitly require a conversion to take place.
