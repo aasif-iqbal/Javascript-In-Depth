@@ -60,3 +60,144 @@ fetchData(displayMessage);
 3. **fetchData(displayMessage)**: This line executes the `fetchData` function and passes `displayMessage` as the callback. When the data fetching is done, `displayMessage` is called with the message `"Data fetched successfully!"`.
 
 When you run this code, you will see the message `"Data fetched successfully!"` printed to the console after a 2-second delay, demonstrating the use of a callback function.
+
+#
+
+Callbacks can be classified into several types based on their usage and how they are defined or invoked. Here are some common types of callback functions:
+
+### 1. **Synchronous Callback**
+A synchronous callback is executed immediately within the function that takes the callback. This means the callback runs before the outer function completes.
+
+**Example:**
+
+```javascript
+function greet(name, callback) {
+    callback(name);
+}
+
+function sayHello(name) {
+    console.log("Hello, " + name);
+}
+
+greet("Alice", sayHello); // Output: Hello, Alice
+```
+
+### 2. **Asynchronous Callback**
+An asynchronous callback is executed after the current operation completes, often involving a delay or a separate thread of execution. This is commonly seen in operations like file reading, network requests, or timers.
+
+**Example:**
+
+```javascript
+function fetchData(callback) {
+    setTimeout(() => {
+        callback("Data fetched successfully!");
+    }, 2000);
+}
+
+function displayMessage(message) {
+    console.log(message);
+}
+
+fetchData(displayMessage); // Output after 2 seconds: Data fetched successfully!
+```
+
+### 3. **Named Callback**
+A named callback function is defined separately and passed by its name.
+
+**Example:**
+
+```javascript
+function onSuccess(data) {
+    console.log("Data: " + data);
+}
+
+function fetchData(callback) {
+    setTimeout(() => {
+        callback("Fetched data");
+    }, 1000);
+}
+
+fetchData(onSuccess); // Output after 1 second: Data: Fetched data
+```
+
+### 4. **Anonymous Callback**
+An anonymous callback function is defined at the point where it is passed as an argument.
+
+**Example:**
+
+```javascript
+function fetchData(callback) {
+    setTimeout(() => {
+        callback("Fetched data");
+    }, 1000);
+}
+
+fetchData(function(data) {
+    console.log("Data: " + data);
+}); // Output after 1 second: Data: Fetched data
+```
+
+### 5. **Callback with Arguments**
+Callbacks can also be defined to accept arguments, allowing more complex interactions.
+
+**Example:**
+
+```javascript
+function processNumbers(a, b, callback) {
+    let result = a + b;
+    callback(result);
+}
+
+function displayResult(result) {
+    console.log("Result: " + result);
+}
+
+processNumbers(5, 10, displayResult); // Output: Result: 15
+```
+
+### 6. **Error-First Callback**
+A common pattern in Node.js is the error-first callback, where the first argument is an error object (if any), and the subsequent arguments are the results.
+
+**Example:**
+
+```javascript
+function fetchData(callback) {
+    let success = true;
+    setTimeout(() => {
+        if (success) {
+            callback(null, "Data fetched successfully!");
+        } else {
+            callback("Error fetching data", null);
+        }
+    }, 1000);
+}
+
+function handleData(error, data) {
+    if (error) {
+        console.log("Error: " + error);
+    } else {
+        console.log("Success: " + data);
+    }
+}
+
+fetchData(handleData); // Output after 1 second: Success: Data fetched successfully!
+```
+
+### 7. **Inline Callback**
+An inline callback function is defined directly inside another function.
+
+**Example:**
+
+```javascript
+function fetchData(callback) {
+    setTimeout(() => {
+        callback("Data fetched successfully!");
+    }, 1000);
+}
+
+fetchData((message) => {
+    console.log(message);
+}); // Output after 1 second: Data fetched successfully!
+```
+
+These examples cover various types of callbacks, demonstrating how they can be used in different scenarios. Each type serves a specific purpose and is useful in different contexts.
