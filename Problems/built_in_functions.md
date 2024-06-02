@@ -333,3 +333,13 @@ console.log(result);
 3. **Convert the object to an array**: Use `Object.values(uniqueItems)` to get an array of the unique items.
 
 This method effectively merges the arrays and removes duplicates based on the `id` property without using the `Map` method.
+
+
+
+
+### intersection
+```js
+const odds = new Set([1, 3, 5, 7, 9]);
+const squares = new Set([1, 4, 9]);
+console.log(odds.intersection(squares)); // Set(2) { 1, 9 }
+```

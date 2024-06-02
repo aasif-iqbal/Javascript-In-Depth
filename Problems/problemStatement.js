@@ -19,7 +19,6 @@ console.log(result);
   { id: 1, value: 'mi' },
   { id: 2, value: 'csk' }
 ]
-
 */
 
 // Without using new Map() methods
