@@ -12,7 +12,6 @@ function makeUser() {
 
 //   Ans:// Error: Cannot read property 'name' of undefined
 
-
 // Such approach is widely used across JavaScript libraries
 // There’s a ladder object that allows to go up and down:
 let ladder = {
@@ -58,3 +57,4 @@ With arrow functions, the this keyword refers to its current surrounding scope, 
 
 Since there is no value radius in the scope of the arrow function, this.radius returns undefined which, when multiplied by 2 * Math.PI, results in NaN.
   */
+
