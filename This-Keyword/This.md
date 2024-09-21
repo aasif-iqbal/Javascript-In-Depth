@@ -415,9 +415,6 @@ document.getElementById("myButton").addEventListener("click", function() {
 });
 
 ```
-
-
-
 # 
 Reference:
 For Browser - how it behaves
