@@ -1,1 +1,2 @@
-./NodeJs-Performance-Improve/node_modules
+# ignore all node_modules directories
+node_modules/
