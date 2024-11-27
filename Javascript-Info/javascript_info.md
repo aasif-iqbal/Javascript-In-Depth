@@ -1,9 +1,9 @@
-Javascript is weak typed,dynamic language.
+## Javascript is weak typed,dynamic language.
 
 Language_overview
 - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Language_overview
 
-TODO Dynamic and weak typing 
+TODO: Dynamic and weak typing 
 - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#dynamic_and_weak_typing
 
 Functions are first-class objects
