@@ -324,7 +324,10 @@ Understanding scope in JavaScript helps you manage variable access, avoid confli
 
 ### **Closures in JavaScript**
 
-Closures are a fundamental concept in JavaScript, created when a function is defined. They enable functions to "remember" the scope in which they were created, even after that scope has finished execution.
+A closure is the combination of a function bundled together (enclosed) with references to its surrounding state (the lexical environment). When you create a closure, you gain access to an outer function’s scope from an inner function. Closures are automatically created every time a function is defined in JavaScript.
+
+Lexical Scoping
+Lexical scoping refers to how a parser resolves variable names when functions are nested. The location where a variable is declared within the source code determines where that variable is available. Nested functions have access to variables declared in their outer scope. 
 
 ---
 
