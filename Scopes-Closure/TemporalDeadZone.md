@@ -1,8 +1,9 @@
 # Temporal Dead Zone
 
-The **Temporal Dead Zone (TDZ)** is a concept in JavaScript that refers to the period between the entering of a scope (like a block, function, or module) and the point at which the variable is declared. During this time, the variable exists in a "dead zone" and cannot be accessed. Trying to access a variable in the TDZ will result in a `ReferenceError`.
-
+**Defination:**
 The Temporal Dead Zone (TDZ) is a period in JavaScript where a variable is not accessible because it's being hoisted but hasn't been initialized yet.
+
+The **Temporal Dead Zone (TDZ)** is a concept in JavaScript that refers to the period between the entering of a scope (like a block, function, or module) and the point at which the variable is declared. During this time, the variable exists in a "dead zone" and cannot be accessed. Trying to access a variable in the TDZ will result in a `ReferenceError`.
 
 In simple terms: If you try to use a let or const variable before it's declared, you'll get an error because it's in the TDZ.
 
