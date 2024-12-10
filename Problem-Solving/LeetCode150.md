@@ -173,3 +173,78 @@ console.log(reverseWords("   a"));                  // Output: "a"
 
 **a.** Should we explore more edge cases like strings with only spaces or single-character words?  
 **b.** Would you like to compare this approach to a more efficient `regex`-based solution?
+
+```
+58. Length of Last Word
+
+Given a string s consisting of words and spaces, return the length of the last word in the string.
+
+A word is a maximal 
+substring
+ consisting of non-space characters only.
+
+Example 1:
+
+Input: s = "Hello World"
+Output: 5
+Explanation: The last word is "World" with length 5.
+Example 2:
+
+Input: s = "   fly me   to   the moon  "
+Output: 4
+Explanation: The last word is "moon" with length 4.
+Example 3:
+
+Input: s = "luffy is still joyboy"
+Output: 6
+Explanation: The last word is "joyboy" with length 6.
+ 
+Constraints:
+
+1 <= s.length <= 104
+s consists of only English letters and spaces ' '.
+There will be at least one word in s.
+```
+
+```js
+/**
+ * @param {string} s
+ * @return {number}
+ */
+var lengthOfLastWord = function(s) {
+  let str = s.trim();
+     
+     let arr = str.split(' ');
+     let imap = new Map();
+     
+     for(let i=0; i< arr.length; i++){
+            imap.set(arr[i], arr[i].length)    
+     };
+     
+     let sortMap = Array.from(imap).at(-1);
+     
+     return sortMap[1]
+};
+```
+# Length Of Largest Word
+```js
+/**
+ * @param {string} s
+ * @return {number}
+ */
+var lengthOfLargestWord = function(s) {
+  let str = s.trim();
+     
+     let arr = str.split(' ');
+     let imap = new Map();
+     
+     for(let i=0; i< arr.length; i++){
+            imap.set(arr[i], arr[i].length)    
+     };
+     
+     let sortMap = Array.from(imap).sort((a, b)=>b[1] - a[1])
+     // return largest string in array.
+     let output = sortMap[0].slice(1)
+     return parseInt(output);  
+};
+```
