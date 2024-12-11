@@ -174,9 +174,9 @@ console.log(reverseWords("   a"));                  // Output: "a"
 **a.** Should we explore more edge cases like strings with only spaces or single-character words?  
 **b.** Would you like to compare this approach to a more efficient `regex`-based solution?
 
-```
-58. Length of Last Word
 
+# 58. Length of Last Word
+```
 Given a string s consisting of words and spaces, return the length of the last word in the string.
 
 A word is a maximal 
@@ -226,7 +226,7 @@ var lengthOfLastWord = function(s) {
      return sortMap[1]
 };
 ```
-# Length Of Largest Word
+# 50. Length Of Largest Word
 ```js
 /**
  * @param {string} s
@@ -247,4 +247,132 @@ var lengthOfLargestWord = function(s) {
      let output = sortMap[0].slice(1)
      return parseInt(output);  
 };
+```
+```text
+Write a function to find the longest common prefix string amongst an array of strings.
+
+If there is no common prefix, return an empty string "".
+
+Example 1:
+
+Input: strs = ["flower","flow","flight"]
+Output: "fl"
+
+Example 2:
+
+Input: strs = ["dog","racecar","car"]
+Output: ""
+Explanation: There is no common prefix among the input strings. 
+
+Constraints:
+
+1 <= strs.length <= 200
+0 <= strs[i].length <= 200
+strs[i] consists of only lowercase English letters.
+```
+
+```js
+//Method 1: 
+
+function longestCommonPrefix(strs) {
+    if (strs.length === 0) return ""; // No strings in the array
+
+    // Sort the array to bring similar prefixes closer
+    strs.sort();
+
+    // Compare the first and last string only, as they will be the most dissimilar
+    const first = strs[0];
+    const last = strs[strs.length - 1];
+
+    let i = 0;
+    while (i < first.length && first[i] === last[i]) {
+        i++;
+    }
+
+    return first.slice(0, i); // Common prefix
+}
+
+// Example usage:
+console.log(longestCommonPrefix(["flower", "flow", "flight"])); // Output: "fl"
+console.log(longestCommonPrefix(["dog", "racecar", "car"])); // Output: ""
+
+// Method 2:
+
+function longestCommonPrefix(strs) {
+    if (strs.length === 0) return ""; // No strings in the array
+
+    // Start with the first string as the prefix
+    let prefix = strs[0];
+
+    // Compare the prefix with each subsequent string
+    for (let i = 1; i < strs.length; i++) {
+        // Keep reducing the prefix until it matches the start of the current string
+        while (strs[i].indexOf(prefix) !== 0) {
+            prefix = prefix.slice(0, -1); // Remove the last character from the prefix
+            if (prefix === "") return ""; // No common prefix
+        }
+    }
+
+    return prefix;
+}
+
+// Example usage:
+console.log(longestCommonPrefix(["flower", "flow", "flight"])); // Output: "fl"
+console.log(longestCommonPrefix(["dog", "racecar", "car"])); // Output: ""
+```
+
+# 2996. Smallest Missing Integer Greater Than Sequential Prefix Sum
+
+```txt
+You are given a 0-indexed array of integers nums.
+
+A prefix nums[0..i] is sequential if, for all 1 <= j <= i, nums[j] = nums[j - 1] + 1. In particular, the prefix consisting only of nums[0] is sequential.
+
+Return the smallest integer x missing from nums such that x is greater than or equal to the sum of the longest sequential prefix.
+
+Example 1:
+
+Input: nums = [1,2,3,2,5]
+Output: 6
+Explanation: The longest sequential prefix of nums is [1,2,3] with a sum of 6. 6 is not in the array, therefore 6 is the smallest missing integer greater than or equal to the sum of the longest sequential prefix.
+Example 2:
+
+Input: nums = [3,4,5,1,12,14,13]
+Output: 15
+Explanation: The longest sequential prefix of nums is [3,4,5] with a sum of 12. 12, 13, and 14 belong to the array while 15 does not. Therefore 15 is the smallest missing integer greater than or equal to the sum of the longest sequential prefix.
+ 
+
+Constraints:
+
+1 <= nums.length <= 50
+1 <= nums[i] <= 50
+```
+
+```js
+function findSmallestMissing(nums) {
+    let sum = nums[0];
+     
+    let i = 1;
+
+    // Find the longest sequential prefix
+    while (i < nums.length && nums[i] === nums[i - 1] + 1) {
+        sum += nums[i];
+        i++;
+    }
+    
+    console.log(sum)
+    
+    // Find the smallest missing integer >= sum 
+    // 
+    while (nums.includes(sum)) {      
+        sum++;
+        console.log('inside:',sum) //13,14,15
+    }
+
+    return sum;
+}
+
+// Example usage:
+// console.log(findSmallestMissing([1, 2, 3, 2, 5])); // Output: 6
+console.log(findSmallestMissing([3, 4, 5, 1, 12, 14, 13])); // Output: 15
 ```
