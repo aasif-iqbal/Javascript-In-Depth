@@ -1,0 +1,21 @@
+1. RESTful API Development (ETA: 4-6 hours)
+Objective:
+
+Build a simple RESTful API to manage a collection of "Books". The API should allow CRUD
+(Create, Read, Update, Delete) operations for books and should store data in a MongoDB
+database.
+Requirements:
+
+● Implement the following endpoints:
+○ POST /books: Add a new book. 
+○ GET /books: Get all books.
+○ GET /books/:id: Get a book by ID.
+○ PUT /books/:id: Update a book by ID.
+○ DELETE /books/:id: Delete a book by ID.
+
+● Use Express.js for routing and handling HTTP requests.
+● Use MongoDB as the database for storing book data (can be a local or cloud-based
+instance).
+● The book should have at least three fields (e.g., title, author, year).
+● Implement basic validation for inputs.
+● Implement error handling for common issues like invalid input, missing parameters, etc.

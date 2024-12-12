@@ -1,0 +1,19 @@
+{
+  "name": "bookstoreapi",
+  "version": "1.0.0",
+  "description": "Book Store Rest Api",
+  "type": "module",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "Aasif-iqbal",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "express": "^4.21.1",
+    "joi": "^17.13.3",
+    "mongoose": "^8.8.3"
+  }
+}
