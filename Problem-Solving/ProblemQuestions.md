@@ -84,3 +84,46 @@ console.log(binarySearch([], 7)); // Output: -1
 const arrayWithDuplicates = [1, 3, 3, 3, 7, 9];
 console.log(binarySearch(arrayWithDuplicates, 3)); // Output: 1 (first occurrence)
 ```
+
+## Return All 2nd most repeated.
+```js
+let str = "ahksadhkjdhsajhaksd";
+
+let imap = new Map();
+
+for(let elem of str){
+  if(!imap.has(elem)){
+    imap.set(elem, (imap.get(elem)||0) + 1);
+  }else{
+    imap.set(elem, imap.get(elem)+1)
+  }
+}
+
+let arr = Array.from(imap)
+let sortedArr = arr.sort((a,b)=> b[1]-a[1])
+console.log(sortedArr)
+const arr = [
+  ['a', 4],
+  ['h', 4],
+  ['k', 3],
+  ['s', 3],
+  ['d', 3],
+  ['j', 2]
+];
+
+// Step 1: Sort the array by the second element in descending order
+const sortedArr = [...arr].sort((a, b) => b[1] - a[1]);
+
+// Step 2: Find the highest value
+const highest = sortedArr[0][1];
+
+// Step 3: Find the first value smaller than the highest (second highest)
+const secondHighest = sortedArr.find(item => item[1] < highest)[1];
+
+// Step 4: Filter and map to return only the keys
+const result = arr.filter(item => item[1] === secondHighest).map(item => item[0]);
+
+console.log(result);
+// [ 'k', 's', 'd' ]
+
+```
