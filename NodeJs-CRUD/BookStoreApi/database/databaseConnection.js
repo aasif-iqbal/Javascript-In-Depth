@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 const dbConnection = async() => {
     try {
         const localConnectionString = `${process.env.MONGODB_CONNECTION_STRING}`;
-        const mongoDBConn = mongoose.connect(localConnectionString);    
+        const mongoDBConn = await mongoose.connect(localConnectionString);    
         
         if(mongoDBConn){
             return mongoDBConn;
