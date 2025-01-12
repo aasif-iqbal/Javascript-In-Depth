@@ -127,3 +127,5 @@ console.log(result);
 // [ 'k', 's', 'd' ]
 
 ```
+
+## Write your own map function. [Array.prototype.map]
