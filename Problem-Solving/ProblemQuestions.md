@@ -129,3 +129,31 @@ console.log(result);
 ```
 
 ## Write your own map function. [Array.prototype.map]
+
+
+## Rearrage the Array of Strings
+```js
+['Aasif', 'Iqbal'] // output = 
+```
+Solution:
+```js
+const arr = ['Aasif', 'Iqbal'];
+
+function reverseArr(arr){
+  const reversedArr = []; // Initialize an empty array to store the results
+
+  for (let j = 0; j < arr.length; j++) {
+    let str = arr[j];
+    let reversed = '';
+    for (let i = str.length - 1; i >= 0; i--) {
+      reversed += str[i];
+    }
+    // Capitalize the first character and make the rest lowercase
+    reversed = reversed.charAt(0).toUpperCase() + reversed.slice(1).toLowerCase();
+    reversedArr.push(reversed); // Add the reversed string to the result array
+  }
+return reversedArr;
+}
+
+console.log(reversedArr(arr)); // Output: ['Fisaa', 'Labqi']
+```
