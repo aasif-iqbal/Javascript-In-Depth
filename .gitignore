@@ -1,4 +1,5 @@
 # ignore all node_modules directories
 node_modules/
 
-Javascript-In-Depth/NodeJs-Performance-Improve/node_modules
+./node_modules
+./DS_Store
