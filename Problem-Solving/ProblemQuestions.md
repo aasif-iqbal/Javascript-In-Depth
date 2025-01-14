@@ -157,3 +157,31 @@ return reversedArr;
 
 console.log(reversedArr(arr)); // Output: ['Fisaa', 'Labqi']
 ```
+
+## Find duplicate elem from array
+```js
+const nums = [4, 3, 2, 7, 8, 2, 3, 3, 1];
+
+function findDuplicates(nums){
+  let result = [];  
+  let imap = new Map();
+  // mark 1 for every repeated elem in array and remaining 0
+  for (let i = 0; i < nums.length; i++) {
+      
+      if(!imap.has(nums[i])){
+        imap.set(nums[i], imap.get(nums[i]) || 0)
+      }else{
+        imap.set(nums[i], 1)
+      }
+  }
+  
+  for (const [key, value] of imap) {
+    if(value > 0){
+      result.push(key)
+    }  
+  }
+  return result;  
+}
+
+console.log(findDuplicates(nums)); // [2,3]
+```
