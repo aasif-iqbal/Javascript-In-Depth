@@ -74,3 +74,4 @@ function mergeAndRemoveDuplicates2(arr1, arr2) {
 
 var result = mergeAndRemoveDuplicates2(a1, a2);
 console.log(result);
+

@@ -38,6 +38,7 @@ n == candies.length
 1 <= candies[i] <= 100
 1 <= extraCandies <= 50
 ```
+
 ```javascript
 /**
  * @param {number[]} candies
