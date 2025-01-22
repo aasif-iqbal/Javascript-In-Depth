@@ -69,3 +69,36 @@ export const getAllBooks = async (req, res) => {
 - **Filtering**: `?filter=JavaScript`
 - **Pagination**: `?page=2&limit=5`
 - Combine them: `?sortBy=author&order=asc&filter=React&page=1&limit=10`
+
+
+mkdir node-app
+cd 
+npm i express 
+——————————————————
+
+<app.js>
+import express from ‘express’;
+
+let app = express();
+
+export app;
+
+<server.js>
+import app from ‘./app.js’;
+
+let port = 3000;
+
+app.listen(port, ()=>{
+	console.log(`server is running on port::${port}`)
+})
+———
+# db
+- dbConfig.js
+# models
+# controllers
+# services
+# routes
+- index.js
+- users.js
+# middleware
+- auth.js
