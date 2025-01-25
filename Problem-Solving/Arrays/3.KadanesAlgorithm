@@ -1,0 +1,302 @@
+# Find the maximum sum of a subarray (Kadane’s Algorithm).
+
+### Problem: Maximum Sum of a Subarray (Kadane’s Algorithm)
+
+Given an array of integers (both positive and negative), find the contiguous subarray with the maximum sum. Return the maximum sum of this subarray.
+
+---
+
+### Example:
+
+**Input:**
+```javascript
+const nums = [-2, 1, -3, 4, -1, 2, 1, -5, 4];
+```
+
+**Output:**
+```javascript
+6
+```
+
+**Explanation:**  
+The subarray `[4, -1, 2, 1]` has the maximum sum of `6`.
+
+---
+
+### Solution (Kadane’s Algorithm):
+
+Kadane's Algorithm works by iterating through the array while maintaining:
+1. **`currentSum`**: The maximum sum of the subarray ending at the current index.
+2. **`maxSum`**: The maximum sum found so far.
+
+The key idea is:
+- Add the current element to `currentSum`.
+- If `currentSum` becomes negative, reset it to `0` because a negative sum will never contribute to the maximum sum.
+
+---
+
+### Implementation:
+
+```javascript
+function maxSubArray(nums) {
+  let maxSum = nums[0]; // Initialize maxSum to the first element
+  let currentSum = 0;
+
+  for (let num of nums) {
+    currentSum += num;          // Add the current number to currentSum
+    maxSum = Math.max(maxSum, currentSum); // Update maxSum if currentSum is greater
+    if (currentSum < 0) {
+      currentSum = 0;           // Reset currentSum if it becomes negative
+    }
+  }
+
+  return maxSum;
+}
+
+// Example Usage:
+const nums = [-2, 1, -3, 4, -1, 2, 1, -5, 4];
+console.log(maxSubArray(nums)); // Output: 6
+```
+
+---
+
+### Steps in the Example:
+
+For `nums = [-2, 1, -3, 4, -1, 2, 1, -5, 4]`:
+
+| Index | Element | Current Sum | Max Sum |
+|-------|---------|-------------|---------|
+| 0     | -2      | -2          | -2      |
+| 1     | 1       | 1           | 1       |
+| 2     | -3      | -2          | 1       |
+| 3     | 4       | 4           | 4       |
+| 4     | -1      | 3           | 4       |
+| 5     | 2       | 5           | 5       |
+| 6     | 1       | 6           | 6       |
+| 7     | -5      | 1           | 6       |
+| 8     | 4       | 5           | 6       |
+
+Final `maxSum` = `6`.
+
+---
+
+### Complexity:
+
+- **Time Complexity:** `O(n)`  
+  - The array is traversed once.
+- **Space Complexity:** `O(1)`  
+  - Only a few variables are used.
+
+---
+
+### Bonus:
+
+To also return the subarray with the maximum sum, you can modify the code to track the start and end indices of the subarray.
+
+Would you like to see that version?
+
+# More Problem based on Kadane’s Algorithm
+Here are more problems related to **Kadane's Algorithm** and variations:
+
+---
+
+### **1. Find the Maximum Sum of a Subarray of Size K**
+Given an array of integers and an integer `K`, find the maximum sum of any contiguous subarray of size `K`.
+
+**Input:**  
+`nums = [2, 1, 5, 1, 3, 2]`  
+`K = 3`
+
+**Output:**  
+`9` (Subarray `[5, 1, 3]`)
+
+---
+
+### **2. Maximum Product Subarray**
+Find the contiguous subarray within an array that has the largest product. 
+
+**Input:**  
+`nums = [2, 3, -2, 4]`
+
+**Output:**  
+`6` (Subarray `[2, 3]`)
+
+---
+
+### **3. Minimum Sum of a Subarray**
+Modify Kadane's Algorithm to find the subarray with the **minimum sum**.
+
+**Input:**  
+`nums = [3, -4, 2, -3, -1, 7, -5]`
+
+**Output:**  
+`-6` (Subarray `[-4, 2, -3, -1]`)
+
+---
+
+### **4. Circular Maximum Subarray Sum**
+Find the maximum sum of a subarray, but the array is **circular** (you can wrap around to the beginning).  
+Use Kadane’s Algorithm in two passes:
+- Maximum sum using normal Kadane’s.
+- Maximum sum with circular wraparound.
+
+**Input:**  
+`nums = [5, -3, 5]`
+
+**Output:**  
+`10` (Subarray `[5, 5]`)
+
+---
+
+### **5. Count All Subarrays with a Sum Equal to K**
+Find the number of contiguous subarrays whose sum equals a given number `K`.
+
+**Input:**  
+`nums = [1, 1, 1]`, `K = 2`
+
+**Output:**  
+`2` (Subarrays `[1, 1]` at indices `[0, 1]` and `[1, 2]`)
+
+---
+
+### **6. Longest Subarray with Sum K**
+Find the length of the longest contiguous subarray with a sum equal to `K`.
+
+**Input:**  
+`nums = [4, 1, 1, 2, 1, 5]`, `K = 5`
+
+**Output:**  
+`2` (Subarray `[2, 3]`)
+
+---
+
+### **7. Find Maximum Sum of Non-Overlapping Subarrays**
+Given an array and an integer `K`, find `K` non-overlapping subarrays with the maximum total sum.
+
+**Input:**  
+`nums = [1, 2, 3, 4, 5]`, `K = 2`
+
+**Output:**  
+`9` (Subarrays `[4, 5]`)
+
+---
+
+### **8. Maximum Alternating Subarray Sum**
+Find the maximum sum of an alternating subarray where adjacent elements have alternating signs.
+
+**Input:**  
+`nums = [1, -2, 3, -4, 5]`
+
+**Output:**  
+`5` (Subarray `[5]`)
+
+---
+
+### **9. Maximum Sum of Increasing Subarray**
+Find the maximum sum of any subarray where the elements are strictly increasing.
+
+**Input:**  
+`nums = [1, 2, 5, 3, 7, 10, 1]`
+
+**Output:**  
+`20` (Subarray `[3, 7, 10]`)
+
+---
+
+### **10. Maximum Sum After One Removal**
+Find the maximum sum of a subarray where you are allowed to remove **one element**.
+
+**Input:**  
+`nums = [1, -2, 0, 3]`
+
+**Output:**  
+`4` (Subarray `[1, 0, 3]`)
+
+---
+
+# Solution
+
+1.
+Here’s the solution for **Problem 1: Find the Maximum Sum of a Subarray of Size K**:
+
+---
+
+### **Problem Recap**
+Given an array of integers and an integer `K`, find the maximum sum of any contiguous subarray of size `K`.
+
+---
+
+### **Sliding Window Technique**
+
+We can solve this problem in **O(n)** using the sliding window approach. The idea is to:
+1. Maintain a window of size `K`.
+2. Compute the sum of the current window.
+3. Slide the window one element at a time by adding the next element and removing the first element of the window.
+4. Keep track of the maximum sum encountered.
+
+---
+
+### **Implementation**
+
+```javascript
+function maxSumSubarrayOfSizeK(nums, k) {
+  if (nums.length < k) {
+    throw new Error("Array length must be greater than or equal to k.");
+  }
+
+  let maxSum = 0;
+  let windowSum = 0;
+
+  // Calculate the sum of the first window
+  for (let i = 0; i < k; i++) {
+    windowSum += nums[i];
+  }
+  maxSum = windowSum;
+
+  // Slide the window
+  for (let i = k; i < nums.length; i++) {
+    windowSum += nums[i] - nums[i - k]; // Add the next element, remove the first element of the previous window
+    maxSum = Math.max(maxSum, windowSum);
+  }
+
+  return maxSum;
+}
+
+// Example Usage:
+const nums = [2, 1, 5, 1, 3, 2];
+const k = 3;
+
+console.log(maxSumSubarrayOfSizeK(nums, k)); // Output: 9 (Subarray [5, 1, 3])
+```
+
+---
+
+### **Step-by-Step Explanation**
+
+For `nums = [2, 1, 5, 1, 3, 2]` and `k = 3`:
+
+1. **Initial Window (`k = 3`):**  
+   - First window: `[2, 1, 5]`  
+   - Sum = `2 + 1 + 5 = 8`  
+   - `maxSum = 8`
+
+2. **Slide the Window:**  
+   - Add the next element (`1`) and remove the first (`2`):  
+     `windowSum = 8 - 2 + 1 = 7`  
+     `maxSum = 8`
+   - Add the next element (`3`) and remove the first (`1`):  
+     `windowSum = 7 - 1 + 3 = 9`  
+     `maxSum = 9`
+   - Add the next element (`2`) and remove the first (`5`):  
+     `windowSum = 9 - 5 + 2 = 6`  
+     `maxSum = 9`
+
+3. **Result:**  
+   The maximum sum is `9`.
+
+---
+
+### **Time Complexity**
+
+- **O(n):** The array is traversed once.
+- **O(1):** Constant space used for variables.
