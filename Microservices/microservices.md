@@ -51,3 +51,6 @@ Microservices architecture is a software development approach where an applicati
 5. **Monitoring and Debugging**: Tracking issues across multiple services requires advanced monitoring and tracing tools.
 
 Microservices architecture is widely adopted in large-scale applications where flexibility, scalability, and resilience are critical. Examples include Netflix, Amazon, and Spotify.
+
+## How to build simple microservice
+[Build Microservice architecture using Node js, MongoDB, Postgresql, Expressjs, JWT](https://www.youtube.com/watch?v=w3iXACKB_wQ&t=4156s)
