@@ -100,3 +100,173 @@ Access each element:
 | `array[4][1]` | `1`         |
 
 ---
+
+AceCreIm
+leotcede
+
+```js
+function reverseVowels(s) {
+    const vowels = new Set(['a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U']); // Set for quick lookup
+    const chars = s.split(''); // Convert string to array for easy swapping
+    let left = 0, right = chars.length - 1;
+
+    while (left < right) {
+        // Move left pointer until it finds a vowel
+        while (left < right && !vowels.has(chars[left])) {
+            left++;
+        }
+        // Move right pointer until it finds a vowel
+        while (left < right && !vowels.has(chars[right])) {
+            right--;
+        }
+        // Swap the vowels
+        if (left < right) {
+            [chars[left], chars[right]] = [chars[right], chars[left]];
+            left++;
+            right--;
+        }
+    }
+
+    return chars.join(''); // Convert array back to string
+}
+
+// Example Usage
+console.log(reverseVowels("IceCreAm")); // Output: "AceCreIm"
+console.log(reverseVowels("leetcode")); // Output: "leotcede"
+```
+
+## 
+```js
+/*
+Input: gain = [-5,1,5,0,-7]
+Output: 1
+Explanation: The altitudes are [0,-5,-4,1,1,-6]. The highest is 1.
+
+Input: gain = [-4,-3,-2,-1,4,3,2]
+Output: 0
+Explanation: The altitudes are [0,-4,-7,-9,-10,-6,-3,-1]. The highest is 0.
+*/ 
+// let gain = [-5,1,5,0,-7];
+let gain = [-4,-3,-2,-1,4,3,2];
+
+function largestAltitude(gain){
+
+	let output = []		
+	output[0]= 0;
+	let temp = 0;
+	let result = 0;
+	for(let i=0; i < gain.length; i++){
+	    temp += gain[i];
+	    output.push(temp);
+	}		
+	return Math.max(...output);
+}
+let result = largestAltitude(gain);
+console.log(result);
+```
+
+ ## Find Pivot Index
+ ```lua
+ Given an array of integers nums, calculate the pivot index of this array.
+
+The pivot index is the index where the sum of all the numbers strictly to the left of the index is equal to the sum of all the numbers strictly to the index's right.
+
+If the index is on the left edge of the array, then the left sum is 0 because there are no elements to the left. This also applies to the right edge of the array.
+
+Return the leftmost pivot index. If no such index exists, return -1.
+
+ 
+
+Example 1:
+
+Input: nums = [1,7,3,6,5,6]
+Output: 3
+Explanation:
+The pivot index is 3.
+Left sum = nums[0] + nums[1] + nums[2] = 1 + 7 + 3 = 11
+Right sum = nums[4] + nums[5] = 5 + 6 = 11
+Example 2:
+
+Input: nums = [1,2,3]
+Output: -1
+Explanation:
+There is no index that satisfies the conditions in the problem statement.
+Example 3:
+
+Input: nums = [2,1,-1]
+Output: 0
+Explanation:
+The pivot index is 0.
+Left sum = 0 (no elements to the left of index 0)
+Right sum = nums[1] + nums[2] = 1 + -1 = 0
+ 
+
+Constraints:
+
+1 <= nums.length <= 104
+-1000 <= nums[i] <= 1000
+```
+Here’s the **JavaScript solution** **without using `reduce`**, using a simple `for` loop to calculate the total sum:  
+
+---
+
+### **Approach**
+1. Compute the **total sum** of the array using a loop.
+2. Use a **left sum** variable to track the sum of elements to the left of the current index.
+3. Iterate through the array, checking if `leftSum * 2 + nums[i] === totalSum`.
+4. If the condition is met, return the index.
+5. Otherwise, update `leftSum` and continue.
+6. If no pivot index is found, return `-1`.
+
+---
+
+### **JavaScript Code**
+```js
+function pivotIndex(nums) {
+    let totalSum = 0;
+    let leftSum = 0;
+
+    // Calculate total sum manually (without reduce)
+    for (let num of nums) {
+        totalSum += num;
+    }
+
+    // Iterate through the array
+    for (let i = 0; i < nums.length; i++) {
+        if (leftSum * 2 + nums[i] === totalSum) {
+            return i;
+        }
+        leftSum += nums[i]; // Update left sum for the next index
+    }
+
+    return -1;
+}
+
+// Example Test Cases
+console.log(pivotIndex([1, 7, 3, 6, 5, 6])); // Output: 3
+console.log(pivotIndex([1, 2, 3]));         // Output: -1
+console.log(pivotIndex([2, 1, -1]));        // Output: 0
+```
+
+---
+
+### **Explanation**
+#### **Example 1: `[1,7,3,6,5,6]`**
+- First loop calculates `totalSum = 28`
+- Second loop:
+  - `i=0`: `leftSum = 0`, check `0 * 2 + 1 == 28` (False)
+  - `i=1`: `leftSum = 1`, check `1 * 2 + 7 == 28` (False)
+  - `i=2`: `leftSum = 8`, check `8 * 2 + 3 == 28` (False)
+  - **`i=3`: `leftSum = 11`, check `11 * 2 + 6 == 28` (True) → return `3`**
+
+#### **Example 2: `[1,2,3]`**
+- `totalSum = 6`, no valid pivot found → return `-1`
+
+#### **Example 3: `[2,1,-1]`**
+- `totalSum = 2`
+- `i=0`: `leftSum = 0`, check `0 * 2 + 2 == 2` (True) → return `0`
+
+---
+
+### **Time Complexity**
+- **O(n)** → Two passes through `nums`, but still efficient.
