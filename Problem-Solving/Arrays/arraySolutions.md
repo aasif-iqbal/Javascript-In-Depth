@@ -69,7 +69,7 @@ function merge(ar1,ar2){
 console.log(merge(ar1,ar2));
 ```
 
-14. Longest Consecutive Sequence
+## 14. Longest Consecutive Sequence
 ### **Optimized Approach (Using a Hash Set)**
 To efficiently find the **longest consecutive sequence**, we can use a **HashSet (Set in JavaScript)** to store all numbers and check for sequences in **O(n) time complexity**.
 
@@ -185,3 +185,108 @@ console.log(longestConsecutiveBruteForce([])); // Output: 0 (Empty input)
 - **`nums.includes()`** is called repeatedly, making the solution slow for large inputs.
 
 Would you like an even **more optimized** approach using sorting? 🚀
+
+
+### **Problem Statement:**  
+Given two arrays, check if they are **permutations** of each other.  
+Two arrays are permutations if they contain the **same elements with the same frequency**, but possibly in a different order.
+
+---
+
+## Check if two arrays are permutations of each other.  - [Frequency Counting]
+
+
+### **Example 1:**  
+#### **Input:**  
+```js
+checkPermutation([1, 2, 3, 4], [4, 3, 2, 1])
+```
+#### **Output:**  
+```js
+true
+```
+(Both arrays contain the same numbers, just in different orders.)
+
+---
+
+### **Example 2:**  
+#### **Input:**  
+```js
+checkPermutation([1, 2, 3], [1, 2, 2])
+```
+#### **Output:**  
+```js
+false
+```
+(Second array contains an extra **2** instead of **3**.)
+
+---
+
+### **Optimized Approach (Using Hash Map / Object)**
+Instead of sorting, we use a **hash map (object) to count frequencies** in **O(n) time**.
+
+```js
+function checkPermutation(arr1, arr2) {
+    if (arr1.length !== arr2.length) return false; // Different lengths → Not permutations
+
+    let frequencyMap = {};
+
+    // Count occurrences in arr1
+    for (let num of arr1) {
+        frequencyMap[num] = (frequencyMap[num] || 0) + 1;
+    }
+
+    // Decrease occurrences using arr2
+    for (let num of arr2) {
+        if (!frequencyMap[num]) return false; // Element missing or extra
+        frequencyMap[num]--;
+    }
+
+    return true;
+}
+
+// Test Cases
+console.log(checkPermutation([1, 2, 3, 4], [4, 3, 2, 1])); // true
+console.log(checkPermutation([1, 2, 3], [1, 2, 2])); // false
+console.log(checkPermutation([5, 6, 7, 8], [8, 7, 6, 5])); // true
+console.log(checkPermutation([1, 2, 3], [1, 2, 3, 4])); // false
+console.log(checkPermutation([], [])); // true (Empty arrays are permutations)
+```
+
+---
+
+### **Time & Space Complexity**
+- **Time Complexity:** \(O(n)\)  
+  - Two passes over the array: One for counting, one for checking.
+- **Space Complexity:** \(O(n)\)  
+  - The **hash map** stores frequencies.
+
+---
+
+### **Alternative Approach (Sorting)**
+A simpler (but slightly slower) approach is to **sort both arrays and compare**.
+
+```js
+function checkPermutationSort(arr1, arr2) {
+    if (arr1.length !== arr2.length) return false;
+    arr1.sort((a, b) => a - b);
+    arr2.sort((a, b) => a - b);
+    return JSON.stringify(arr1) === JSON.stringify(arr2);
+}
+
+// Test Cases
+console.log(checkPermutationSort([1, 2, 3, 4], [4, 3, 2, 1])); // true
+console.log(checkPermutationSort([1, 2, 3], [1, 2, 2])); // false
+console.log(checkPermutationSort([5, 6, 7, 8], [8, 7, 6, 5])); // true
+console.log(checkPermutationSort([1, 2, 3], [1, 2, 3, 4])); // false
+console.log(checkPermutationSort([], [])); // true
+```
+
+---
+### **Sorting vs Hash Map Approach**
+| Approach | Time Complexity | Space Complexity | Best Use Case |
+|----------|---------------|----------------|--------------|
+| **Hash Map (Frequency Count)** | **O(n)** | **O(n)** | Best for large arrays with unique values |
+| **Sorting & Comparing** | **O(n log n)** | **O(1) or O(n)** | Simple but slower for large inputs |
+
+Would you like a **brute-force approach** (O(n²)) as well? 🚀
