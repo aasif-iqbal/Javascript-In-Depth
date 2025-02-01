@@ -270,3 +270,30 @@ console.log(pivotIndex([2, 1, -1]));        // Output: 0
 
 ### **Time Complexity**
 - **O(n)** → Two passes through `nums`, but still efficient.
+
+
+## Remove Spaces
+```js
+function removeSpaces(str){
+  let start = 0;
+  let end = str.length - 1;
+  
+  while(start <= end && str[start] == ' '){
+    start++;
+  }
+  
+  while(start >= end && str[end] == ' '){
+    end--
+  }
+  
+  return str.slice(start, end+1);
+}
+
+
+// Test Cases
+console.log(removeSpaces("   Hello, World!   "));  // Output: "Hello, World!"
+console.log(removeSpaces("   JavaScript   "));     // Output: "JavaScript"
+console.log(removeSpaces("NoSpaces"));            // Output: "NoSpaces"
+console.log(removeSpaces("      "));             // Output: "" (Empty String)
+console.log(removeSpaces("  Trim  Me  "));       // Output: "Trim  Me"
+```
