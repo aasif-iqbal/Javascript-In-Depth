@@ -63,3 +63,63 @@ const User = [
 ```js
 let arr = [1,2,4,1,4,6,6,6,3,9] // return 6
 ```
+
+11.  Remove duplicate from Object of array.
+```js
+let obj = [
+    { name: 'Sid' },
+    { name: 'Mark' },
+    { name: 'Sid' },
+    { name: 'Jane' },
+    { name: 'Sid' }
+];
+```
+You can remove duplicates **without using `filter` or `Set`** by using an **object (hashmap)** to track seen values and then constructing a new array. Here's how:
+
+### **Solution using an Object (`Map` alternative)**
+```javascript
+let obj = [
+    { name: 'Sid' },
+    { name: 'Mark' },
+    { name: 'Sid' },
+    { name: 'Jane' },
+    { name: 'Sid' }
+];
+
+let seen = {}; // Hashmap to track seen names
+let uniqueArray = [];
+
+for (let i = 0; i < obj.length; i++) {
+    if (!seen[obj[i].name]) {
+        seen[obj[i].name] = true; // Mark name as seen
+        uniqueArray.push(obj[i]); // Add to result array
+    }
+}
+
+console.log(uniqueArray);
+```
+
+### **Output:**
+```javascript
+[
+  { name: 'Sid' },
+  { name: 'Mark' },
+  { name: 'Jane' }
+]
+```
+
+---
+
+### **💡 Explanation:**
+1. We create an **empty object (`seen`)** to track encountered names.
+2. Loop through the `obj` array:
+   - If `name` is **not in `seen`**, add it to `uniqueArray` and mark it as seen.
+   - If `name` is already in `seen`, **skip it**.
+3. This ensures that only the **first occurrence** of each name is kept.
+
+---
+
+### **🔹 Time Complexity:**
+- **O(N)** → Since we loop through the array once and lookup operations in objects are **O(1)**.
+
+Would you like an alternative solution using **reduce()** or other methods? 🚀
