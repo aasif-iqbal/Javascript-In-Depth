@@ -8,7 +8,7 @@ Both **Dockerfile** and **Docker Compose** are essential tools in the Docker eco
 **Purpose:**  
 A **Dockerfile** is a script containing a set of instructions to build a **Docker image**.
 
-**Usage Scenario:**
+**Usage Scenario:*
 - When you need to **define and build** a custom image.
 - When deploying a **single container** with specific configurations.
 
