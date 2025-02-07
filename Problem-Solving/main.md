@@ -123,3 +123,27 @@ console.log(uniqueArray);
 - **O(N)** → Since we loop through the array once and lookup operations in objects are **O(1)**.
 
 Would you like an alternative solution using **reduce()** or other methods? 🚀
+
+# Find Leader in array
+```js
+function findLeaders(arr) {
+    let n = arr.length;
+    let leaders = [];
+    let maxSoFar = arr[n - 1]; // Rightmost element is always a leader
+    leaders.push(maxSoFar);
+
+    // Traverse from second last element to the first
+    for (let i = n - 2; i >= 0; i--) {
+        if (arr[i] >= maxSoFar) {
+            maxSoFar = arr[i];
+            leaders.push(maxSoFar);
+        }
+    }
+
+    return leaders.reverse(); // Reverse to maintain the original order
+}
+
+// Example usage
+let arr = [16, 17, 4, 3, 5, 2];
+console.log(findLeaders(arr));  // Output: [17, 5, 2]
+```
