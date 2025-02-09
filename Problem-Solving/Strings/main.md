@@ -297,3 +297,61 @@ console.log(removeSpaces("NoSpaces"));            // Output: "NoSpaces"
 console.log(removeSpaces("      "));             // Output: "" (Empty String)
 console.log(removeSpaces("  Trim  Me  "));       // Output: "Trim  Me"
 ```
+
+# 28. Find the Index of the First Occurrence in a String
+```lua
+Given two strings needle and haystack, return the index of the first occurrence of needle in haystack, or -1 if needle is not part of haystack.
+
+Example 1:
+
+Input: haystack = "sadbutsad", needle = "sad"
+Output: 0
+Explanation: "sad" occurs at index 0 and 6.
+The first occurrence is at index 0, so we return 0.
+Example 2:
+
+Input: haystack = "leetcode", needle = "leeto"
+Output: -1
+Explanation: "leeto" did not occur in "leetcode", so we return -1.
+ 
+Constraints:
+
+1 <= haystack.length, needle.length <= 104
+haystack and needle consist of only lowercase English characters.
+```
+Solution:
+```js
+/**
+ * @param {string} haystack
+ * @param {string} needle
+ * @return {number}
+ */
+var strStr = function(haystack, needle) {
+    return haystack.indexOf(needle);
+};
+```
+Brute-force:
+
+```js
+function strStr(haystack, needle) {
+    let m = haystack.length, n = needle.length;
+
+    for (let i = 0; i <= m - n; i++) {
+        let j;
+        for (j = 0; j < n; j++) {
+            if (haystack[i + j] !== needle[j]) {
+                break;
+            }
+        }
+        if (j === n) {
+            return i; // Found the first occurrence
+        }
+    }
+    return -1; // Not found
+}
+
+// Example usage:
+console.log(strStr("hello", "ll")); // Output: 2
+console.log(strStr("sadbutsad", "sad")); // Output: 0
+console.log(strStr("leetcode", "leeto")); // Output: -1
+```
