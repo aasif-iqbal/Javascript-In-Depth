@@ -355,3 +355,46 @@ console.log(strStr("hello", "ll")); // Output: 2
 console.log(strStr("sadbutsad", "sad")); // Output: 0
 console.log(strStr("leetcode", "leeto")); // Output: -1
 ```
+# Find the First Non-Repeating Character
+```lua
+Description:
+Given a string s, return the index of the first non-repeating character. If there is no non-repeating character, return -1.
+
+Input: "leetcode"
+Output: 0
+Explanation: The first non-repeating character is 'l' at index 0.
+
+Input: "loveleetcode"
+Output: 2
+Explanation: The first non-repeating character is 'v' at index 2.
+
+Input: "aabb"
+Output: -1
+Explanation: All characters repeat, so return -1.
+```
+
+Solution:
+```js
+function getNonRepeatChar(strg) {
+  let imap = new Map();
+
+  // Step 1: Count frequency of each character
+  for (let i = 0; i < strg.length; i++) {
+    imap.set(strg[i], (imap.get(strg[i]) || 0) + 1);
+  }
+
+  // Step 2: Find the first character with count == 1
+  for (let i = 0; i < strg.length; i++) {
+    if (imap.get(strg[i]) === 1) {
+      return i; // Return the correct index
+    }
+  }
+
+  return -1; // No non-repeating character found
+}
+
+// Example usage:
+console.log(getNonRepeatChar("leetcode"));      // Output: 0
+console.log(getNonRepeatChar("loveleetcode"));  // Output: 2
+console.log(getNonRepeatChar("aabb"));          // Output: -1
+```
