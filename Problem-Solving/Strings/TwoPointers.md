@@ -100,3 +100,5 @@ console.log(longestUniqueSubstring("abcabcbb")); // Output: 3 ("abc")
 | Finding the smallest/largest subarray | Same Direction Pointers | Sliding Window |
 
 Would you like to see more problems or different variations of the two-pointer technique?
+
+# Fast and slow Pointers
