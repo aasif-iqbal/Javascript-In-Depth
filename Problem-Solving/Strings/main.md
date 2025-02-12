@@ -398,3 +398,86 @@ console.log(getNonRepeatChar("leetcode"));      // Output: 0
 console.log(getNonRepeatChar("loveleetcode"));  // Output: 2
 console.log(getNonRepeatChar("aabb"));          // Output: -1
 ```
+
+### **Minimum Window Substring Problem**
+💡 **Problem Statement:**  
+Given two strings **s** and **t**, find the **smallest substring** in `s` that contains **all the characters of `t`** (including duplicates).  
+
+📌 **Example:**  
+```plaintext
+s = "ddaaabbca"  
+t = "abc"
+```
+✅ **Output:** `"bca"`
+
+---
+
+### **🔹 Approach: Sliding Window + Two Pointers**
+We use a **sliding window** technique with two pointers (`left` and `right`).
+
+#### **Step-by-Step Solution:**
+1. **Use a frequency map** to track required characters from `t`.
+2. **Expand the right pointer** to include characters until all `t` characters are found.
+3. **Shrink the left pointer** to minimize the window while maintaining all `t` characters.
+4. **Update the minimum window** whenever a valid substring is found.
+5. **Return the smallest valid window**.
+
+---
+
+### **📝 JavaScript Code (Two Pointers + Sliding Window)**
+```javascript
+function minWindow(s, t) {
+    if (s.length < t.length) return ""; // Edge case
+
+    let freqT = new Map(), freqS = new Map();
+    for (let char of t) freqT.set(char, (freqT.get(char) || 0) + 1);
+
+    let left = 0, minLength = Infinity, minStart = 0;
+    let required = freqT.size, formed = 0;
+
+    for (let right = 0; right < s.length; right++) {
+        let char = s[right];
+        freqS.set(char, (freqS.get(char) || 0) + 1);
+
+        if (freqT.has(char) && freqS.get(char) === freqT.get(char)) {
+            formed++;
+        }
+
+        while (formed === required) { // Shrink the window
+            if (right - left + 1 < minLength) {
+                minLength = right - left + 1;
+                minStart = left;
+            }
+
+            let leftChar = s[left];
+            freqS.set(leftChar, freqS.get(leftChar) - 1);
+            if (freqT.has(leftChar) && freqS.get(leftChar) < freqT.get(leftChar)) {
+                formed--;
+            }
+            left++;
+        }
+    }
+
+    return minLength === Infinity ? "" : s.substring(minStart, minStart + minLength);
+}
+
+// Example Usage
+let s = "ddaaabbca", t = "abc";
+console.log(minWindow(s, t)); // Output: "bca"
+```
+
+---
+
+### **⏳ Time Complexity Analysis**
+- **O(N)**: We traverse `s` once using `right` and once using `left` → **O(2N) ≈ O(N)**
+- **O(M)**: Constructing frequency map of `t`
+- **Overall:** **O(N + M)**, where `N = s.length` and `M = t.length`
+
+---
+
+### **🔥 Key Takeaways**
+✔ **Sliding Window & Two Pointers**  
+✔ **Optimized with Frequency Maps**  
+✔ **Time Complexity:** **O(N + M)**  
+
+Would you like a breakdown of each step with visual examples? 🚀
