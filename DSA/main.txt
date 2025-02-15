@@ -1,0 +1,2672 @@
+Top
+
+1. Reverse the array of strings
+
+let arr = ['OneCompiler','Javascript']
+// [ 'RelipmoCeno', 'Tpircsavaj' ]
+
+function reverse(arr){
+  let result = [];
+  
+  
+  for(let i=0; i<arr.length; i++){
+    
+    let len = arr[i].split('').length;
+     
+    let rev='';  
+    let temp = arr[i]
+     
+    for(let j=len-1; j >= 0; j--){
+        
+      rev += temp[j];
+    }
+    // capitalize first char & Make rest in lowercase
+    rev = rev.charAt(0).toUpperCase() + rev.slice(1).toLowerCase();   
+    result.push(rev);
+  }
+  
+  return result;
+}
+
+const result = reverse(arr)
+console.log(result)
+------------------------------------------------------------------------------------
+2. Find all duplicate numbers in an array
+
+let arr = [1,2,4,1,4,6,6,6,3,9] // return all duplicate
+
+function getDuplicateElem(arr){
+    let result = []
+    let imap = new Map();
+    
+    //mark repeat elem by 1
+    for(let i=0; i < arr.length; i++){
+        
+        if(imap.has(arr[i])){
+          imap.set(arr[i], imap.get(arr[i]) || 1)
+        }else{
+          imap.set(arr[i], 0)
+        }
+    }
+    
+    //Map(6) { 1 => 1, 2 => 0, 4 => 1, 6 => 1, 3 => 0, 9 => 0 }
+    for(let [key, value] of imap){
+      if(value > 0){
+        result.push(key);
+      }
+    }
+    
+    return result;
+}
+
+let result = getDuplicateElem(arr)
+console.log(result) // [ 1, 4, 6 ]
+------------------------------------------------------------------------------------
+3. Sort Elements of an Array By Length
+let home = ['table', 'chair', 'bed', 'fridge', 'ac'];
+
+function sortByLength(home){
+  
+  let storeroomMap = new Map();
+  
+  for(let household of home){
+    
+    if(!storeroomMap.has(household)){
+      
+      storeroomMap.set(household, household.length);
+    }    
+  }
+
+  // Convert Map to Array
+  let arr = Array.from(storeroomMap);
+  
+  //bubble sort
+  for(let i=0; i<arr.length; i++){
+    
+    for(let j=0; j<arr.length-1-i; j++){
+      
+      if(arr[j][1] > arr[j+1][1]){
+        //swap
+        const temp = arr[j];
+        arr[j] = arr[j+1];
+        arr[j+1] = temp;
+      }      
+    }    
+  }
+    
+  //convert it to into array
+  let newArr = arr.map((keys)=> keys[0])
+  
+  return newArr;
+  
+  // return home.sort((a,b)=> return a.length - b.length) // with sort() method  
+}
+
+let result = sortByLength(home);
+console.log(result); 
+------------------------------------------------------------------------------------
+4. Merge two array and remove duplicate elem
+
+    const users1 = [
+       { userId: 1, name: 'Alice', email: 'alice@example.com' },
+       { userId: 2, name: 'Bob', email: 'bob@example.com' }
+     ];
+     const users2 = [
+       { userId: 2, name: 'Bobby', email: 'bobby@example.com' },
+       { userId: 3, name: 'Charlie', email: 'charlie@example.com' }
+     ];
+
+function mergeTwoArr(users1, users2){
+    let combinedArr = [...users1, ...users2];
+    
+    let uniqueUserMap = new Map();
+    combinedArr.map((user) => {
+        if(!uniqueUserMap.has(user.userId)){
+            uniqueUserMap.set(user.userId, user)
+        }
+    })
+    // console.log(uniqueUserMap);
+    // Now convert the map values into array
+    const result  = Array.from(uniqueUserMap.values())
+    return result;
+}
+console.log(mergeTwoArr(users1, users2))
+
+output:
+[
+  { userId: 1, name: 'Alice', email: 'alice@example.com' },
+  { userId: 2, name: 'Bob', email: 'bob@example.com' },
+  { userId: 3, name: 'Charlie', email: 'charlie@example.com' }
+]
+---------------------------------------------------------------------------------
+5. Find 2'nd most frequent elem in given string.
+let str = 'addaddh';
+
+function makeCount(str){
+    // create map and count each char
+    let iMap = new Map();
+    
+    for(let elem of str){
+        iMap.set(elem, (iMap.get(elem) || 0) + 1)
+    }
+    
+    //convert map into array 
+    const arry = [...iMap.entries()]; // or const arry = [...iMap]
+    
+    // sort arry
+    const sortedArry = arry.sort((a, b)=> b[1] - a[1]);
+    
+    // return second index
+    return sortedArry[1][0]
+}
+
+console.log(makeCount(str))  // a
+---------------------------------------------------------------------------------
+6. Find All Duplicates in an Array
+
+let arr = [1,2,4,1,4,6,6,6,3,9] // return all duplicate
+
+function getDuplicateElem(arr){
+    let result = []
+    let imap = new Map();
+    
+    //mark repeat elem by 1
+    for(let i=0; i < arr.length; i++){
+        
+        if(imap.has(arr[i])){
+          imap.set(arr[i], imap.get(arr[i]) || 1)
+        }else{
+          imap.set(arr[i], 0)
+        }
+    }
+    
+    //Map(6) { 1 => 1, 2 => 0, 4 => 1, 6 => 1, 3 => 0, 9 => 0 }
+    for(let [key, value] of imap){
+      if(value > 0){
+        result.push(key);
+      }
+    }
+    
+    return result;
+}
+
+let result = getDuplicateElem(arr)
+console.log(result) // [ 1, 4, 6 ]
+
+---------------------------------------------------------------------------------
+
+7. Bubble Sort
+
+function bubbleSort(arr) {
+    let n = arr.length;
+    let swapped;
+    
+    for (let i = 0; i < n - 1; i++) {
+        swapped = false;
+        
+        for (let j = 0; j < n - i - 1; j++) {
+            if (arr[j] > arr[j + 1]) {
+                // Swap the elements
+                [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
+                swapped = true;
+            }
+        }
+        
+        // If no swaps were made, the array is already sorted
+        if (!swapped) break;
+    }
+    
+    return arr;
+}
+
+// Example usage
+let numbers = [64, 34, 25, 12, 22, 11, 0, 0];
+console.log("Sorted Array:", bubbleSort(numbers));
+
+---------------------------------------------------------------------------------
+8. Make the array empty
+let arr = [4, 3, 2, 7, 8, 2, 3, 1];
+arr.length = 0;
+console.log(arr); // Output: []
+
+---------------------------------------------------------------------------------
+
+9. Merge two arrays on base of id
+let arr1 = [{ id:1, name:'a' }, { id:2, name:'b' }, { id:3, name:'c' }];
+let arr2 = [{ id:1, name:'d' }, { id:5, name:'e'}];
+
+solution:
+function getUniqueId(arr1, arr2){
+  
+  let combinedArr = [...arr1, ...arr2];
+  
+  let imap = new Map();
+  
+  combinedArr.map((elem) => {
+    
+    if(!imap.has(elem.id)){
+      imap.set(elem.id, elem);
+    }
+  })
+  
+  let arr = Array.from(imap.values());
+  return arr;
+}
+
+let result = getUniqueId(arr1, arr2)
+
+console.log(result);
+---------------------------------------------------------------------------------
+
+10. Binary Search
+
+function binarySearch(arr, target) {
+    let left = 0;
+    let right = arr.length - 1;
+
+    while (left <= right) {
+        let mid = Math.floor((left + right) / 2);
+
+        if (arr[mid] === target) {
+            return mid; // Target found at index mid
+        } else if (arr[mid] < target) {
+            left = mid + 1; // Search in the right half
+        } else {
+            right = mid - 1; // Search in the left half
+        }
+    }
+
+    return -1; // Target not found
+}
+
+// Example usage:
+const sortedArray = [1, 3, 5, 7, 9, 11, 13, 15];
+const target = 7;
+const result = binarySearch(sortedArray, target);
+
+if (result !== -1) {
+    console.log(`Element found at index: ${result}`);
+} else {
+    console.log("Element not found");
+}
+
+---------------------------------------------------------------------------------
+
+11. Filter User based on their age(age > 40)
+
+const User = [
+    { name: 'John', age: 25 },
+    { name: 'Jane', age: 30 },
+    { name: 'Bob', age: 35 },
+    { name: 'Alice', age: 40 },
+    { name: 'Charlie', age: 45 },
+    { name: 'David', age: 50 }
+  ];
+  
+const filteredUsers = users.filter(user => user.age > 40);
+
+console.log(filteredUsers);
+
+Without filter:
+
+const filteredUsers = [];
+for (let i = 0; i < users.length; i++) {
+    if (users[i].age > 40) {
+        filteredUsers.push(users[i]);
+    }
+}
+
+console.log(filteredUsers);
+
+[
+  { name: 'Charlie', age: 45 },
+  { name: 'David', age: 50 }
+]
+
+---------------------------------------------------------------------------------
+
+12. Remove duplicate from Object of array.
+
+let obj = [
+    { name: 'Sid' },
+    { name: 'Mark' },
+    { name: 'Sid' },
+    { name: 'Jane' },
+    { name: 'Sid' }
+];	
+
+
+Using Object:
+
+let seen = {}; // Hashmap to track seen names
+let uniqueArray = [];
+
+for (let i = 0; i < obj.length; i++) {
+    if (!seen[obj[i].name]) {
+        seen[obj[i].name] = true; // Mark name as seen
+        uniqueArray.push(obj[i]); // Add to result array
+    }
+}
+
+console.log(uniqueArray);
+
+Using Set:
+
+let obj = [
+    { name: 'Sid' },
+    { name: 'Mark' },
+    { name: 'Sid' },
+    { name: 'Jane' },
+    { name: 'Sid' }
+];
+
+const uniqueNames = new Set();
+const uniqueObj = [];
+
+for (const item of obj) {
+    if (!uniqueNames.has(item.name)) {
+        uniqueNames.add(item.name);
+        uniqueObj.push(item);
+    }
+}
+
+console.log(uniqueObj);
+
+---------------------------------------------------------------------------------
+
+13. Find The 2nd largest number in an array.
+
+let arr = [1,2,4,1,4,6,6,6,3,9, 9] // return 6
+
+function getSecondHighestNumber(arr){
+  
+  let iset = new Set();
+  
+  for(let i=0; i<arr.length; i++){
+    iset.add(arr[i])
+  }
+  
+  let sortedArr = Array.from(iset);
+  sortedArr.sort((a,b)=> a - b);
+  
+  return sortedArr[sortedArr.length-2]  
+}
+
+let value = getSecondHighestNumber(arr);
+console.log(value)
+
+---------------------------------------------------------------------------------
+
+14. Two Sum 
+
+// two sum
+
+// arry = [2,4,5,6,7,8,1,3] target = 9 , return index
+
+arry = [2,4,5,6,0,8,1,3];
+target = 9
+
+function twoSum(arry, target){
+  
+  let result = [];
+  
+  for (let i = 0; i < arry.length; i++) {
+    
+    for(let j=0; j < arry.length; j++){
+      
+      if(arry[i] + arry[j] == target){
+        console.log(arry[i])
+        console.log(arry[j])
+        
+        result.push(i)
+        result.push(j)
+        return result;  
+      }
+    }
+  }
+  return null;
+}
+
+# Using Map
+// let value = twoSum(arry, target);
+// console.log(value);
+// arry = [2,4,5,6,0,8,1,3];
+// target = 9
+
+function twoSumHash(arr, target) {
+  let map = new Map();
+
+  for (let i = 0; i < arr.length; i++) {
+    let compliment = target - arr[i];
+    
+    if (map.has(compliment)) {
+      return [map.get(compliment), i]; // Return indices of the two numbers
+    }
+    
+    map.set(arr[i], i); // Store the current number and its index in the map
+  }
+
+  return null; // Return null if no such pair is found
+}
+
+let hash = twoSumHash(arry, target);
+console.log(hash);
+------------------------------------------------------------------------------
+
+15. Fibonacci series	
+
+function generateFibonacci(n) {
+  if (n <= 0) return [];
+  if (n === 1) return [0];
+  
+  const fibSeries = [0, 1];
+  
+  for (let i = 2; i < n; i++) {
+    fibSeries.push(fibSeries[i - 1] + fibSeries[i - 2]);
+  }
+  
+  return fibSeries;
+}
+
+// Example usage:
+const n = 10; // Number of terms
+console.log(generateFibonacci(n));
+// Output: [0, 1, 1, 2, 3, 5, 8, 13, 21, 34]
+
+
+Recursive Approach:
+
+function generateFibonacciRecursive(n, series = [0, 1]) {
+  if (n <= 0) return [];
+  if (n === 1) return [0];
+  if (series.length >= n) return series.slice(0, n);
+
+  series.push(series[series.length - 1] + series[series.length - 2]);
+  return generateFibonacciRecursive(n, series);
+}
+
+// Example usage:
+const n = 10; // Number of terms
+console.log(generateFibonacciRecursive(n));
+// Output: [0, 1, 1, 2, 3, 5, 8, 13, 21, 34]
+
+------------------------------------------------------------------------------
+16. Swap array elem
+
+let arr = [1, 2];
+
+// Swapping using a for loop and a temporary variable
+for (let i = 0; i < Math.floor(arr.length / 2); i++) {
+    let temp = arr[i];
+    arr[i] = arr[arr.length - 1 - i];
+    arr[arr.length - 1 - i] = temp;
+}
+
+console.log(arr);
+// Output: [2, 1]
+
+------------------------------------------------------------------------------
+
+17. Only duplicates element
+
+let arr = [22, 33, 33, 22, 2, 8]; should be output = [ 22, 22, 33, 33 ]
+let countMap = new Map();
+let result = [];
+let seen = new Set();
+
+// Count occurrences using Map
+for (let i = 0; i < arr.length; i++) {
+    const num = arr[i];
+    countMap.set(num, (countMap.get(num) || 0) + 1);
+}
+
+// Populate the result array with numbers that appear more than once
+for (let i = 0; i < arr.length; i++) {
+    const num = arr[i];
+    
+    // Only add the number to the result if it appears more than once
+    // and if it hasn't been added to the result yet (to maintain first occurrence order)
+    //console.log(countMap.get(22))
+    // let arr = [22, 33, 33, 22, 2, 8];
+    console.log('seen',!seen.has(num))
+    if (countMap.get(num) > 1 && !seen.has(num)) {
+        console.log('IN',!seen.has(num))
+        for (let j = 0; j < countMap.get(num); j++) {
+            result.push(num);
+        }
+        // console.log(seen)
+        seen.add(num); // Mark the number as seen
+    }
+}
+
+console.log(result); // Output: [22, 22, 2, 2, 11, 11, 11]
+
+------------------------------------------------------------------------------
+
+18. Find Common Items in Two Arrays
+
+let ar1 = ['a','b','c','x'];
+let ar2 = ['z','x','y'];
+
+function containsCommenItem(ar1, ar2){
+
+    for(let i=0; i<ar1.length; i++){
+        for(let j=0; j<ar2.length; j++){
+            if(ar1[i] === ar2[j]){
+                console.log("Found at:"+ j +"pos");
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+//containsCommenItem(ar1, ar2); //time complexity-O(n^2)[bad], space compx-O(1)[good]
+
+function containsCommenItem2(ar1, ar2){
+    //step1:loop through first array and create object where properties === items in an array.
+
+    let map = {}  //create obj
+    for(let i=0; i<ar1.length; i++){
+        if(!map[ar1[i]]){
+            const item = ar1[i];
+            map[item] = true;
+        }
+    }
+    //console.log(map);
+    //step2:loop through second array and check if item in second array exists on created object.
+    for(let j=0; j<ar2.length; j++){
+        if(map[ar2[j]]){
+            return true;
+        }
+    }
+    return false;
+}
+
+let checkStatus = containsCommenItem2(ar1, ar2);  //time complexity-O(a+b)[good], space compx-O(a)[bad]
+//console.log(checkStatus);
+//containsCommenItem2(ar1, ar2);
+
+//using javascript built-in methods
+
+function containsCommenItem3(ar1,ar2){
+    return ar1.some(item => ar2.includes(item))
+}
+let checkStatus1 = containsCommenItem3(ar1,ar2);
+console.log(checkStatus1);
+containsCommenItem3(ar1, ar2);
+
+--------------------------------------------------------------------------------------------------------------------
+
+19. Count Each Element
+
+let str='aaaabbbccccc'
+
+function countEachElm(str){
+  
+  let imap = new Map();
+  
+  let arrOfStr = str.split('');
+  
+  for(let i=0; i<arrOfStr.length; i++){
+    
+    if(!imap.has(arrOfStr[i])){
+      //set elem to imap
+      imap.set(arrOfStr[i], (imap.get(arrOfStr[i]) || 0) + 1);
+    } else {
+      imap.set(arrOfStr[i], imap.get(arrOfStr[i]) + 1);
+    } 
+    
+  }
+  return imap;
+}
+
+console.log(countEachElm(str)); // Map(3) { 'a' => 4, 'b' => 3, 'c' => 5 }
+
+
+--------------------------------------------------------------------------------------------------------------------
+
+20. Move Zero At Last
+
+let arr = [1,0,3,0,4,0,4,6,1,4,0] 
+// [1,3,4,4,6,1,4,0,0,0,0];
+
+function moveZeroAtLast(arr){
+  
+  let index = 0;
+  let result = [];
+  
+  for(let i=0; i<arr.length; i++){
+    if(arr[i] == 0) index++;  
+  }
+  
+  for(let i=0; i < arr.length; i++){
+    if(arr[i] !== 0){
+      result.push(arr[i])
+    }
+  }
+  
+  for(let i=result.length; i >= index; i--){
+      
+      arr[i] = 0
+      result.push(arr[i]);
+  }
+  return result;
+}
+
+let result = moveZeroAtLast(arr);
+console.log(result)//O(n)
+
+## More Efficient Solution:
+
+const input = [0, 1, 2, 0, 3, 4, 0];
+const output = moveZeroes(input);
+console.log(output); // Output: [1, 2, 3, 4, 0, 0, 0]
+
+function moveZeroes(arr){
+  
+  let indexZero = 0;
+  let sortedArr =[]
+  
+  for(let i=0; i<arr.length; i++){
+    
+    if(arr[i] == 0) indexZero++;
+    
+    if(arr[i] != 0){
+      sortedArr.push(arr[i]);
+    }
+  }
+  
+  sortedArr = sortedArr.sort((a,b)=>a-b);
+  
+  for(let i = 0; i < indexZero; i++){
+    sortedArr.push(0)
+  }
+  return sortedArr;
+}
+--------------------------------------------------------------------------------------------------------------------
+
+21. Find the Majority Element
+
+Problem Statement: Given an array, find the element that appears more than n/2 times in the array (if it exists).
+
+Example:
+
+Input: [3, 3, 4, 2, 4, 4, 2, 4, 4]
+Output: 4
+
+Solution:
+let arr = [3, 3, 4, 2, 4, 4, 2, 4, 4];
+
+function findFq(arr){
+let imap = new Map();
+
+for(let i=0; i< arr.length; i++){
+    if(!imap.has(arr[i])){
+        imap.set(arr[i], (imap.get(arr[i])||0) + 1)
+    }else{
+        imap.set(arr[i], (imap.get(arr[i])) + 1)
+        // imap.set(arr[i], (imap.get(i)) +1)
+    }    
+}
+console.log(imap)
+
+candidate = arr.length/2
+
+for(let [key,value] of imap){
+    if(candidate <= value) return key;
+}
+
+return -1;
+}
+
+console.log(findFq(arr))
+
+----------------------------------------------------------------------------------------------------------------
+
+22. Show all Prime Numbers upto N
+
+I think you meant the Sieve of Eratosthenes, which is an efficient algorithm to find all prime numbers up to a given limit N. 
+Here’s how it works:
+
+🔹 Algorithm:
+1. Create a boolean array isPrime[] of size N+1, initialized to true (assuming all numbers are prime).
+2. Start from 2 (first prime number), mark all its multiples as false.
+3. Move to the next number that is still true and repeat until √N.
+4. All numbers still marked true in the array are prime.
+
+function sieveOfEratosthenes(n) {
+    let isPrime = new Array(n + 1).fill(true);
+    isPrime[0] = isPrime[1] = false; // 0 and 1 are not prime
+
+    for (let i = 2; i * i <= n; i++) {
+        if (isPrime[i]) {
+            for (let j = i * i; j <= n; j += i) {
+                isPrime[j] = false;
+            }
+        }
+    }
+
+    let primes = [];
+    for (let i = 2; i <= n; i++) {
+        if (isPrime[i]) primes.push(i);
+    }
+    return primes;
+}
+
+console.log(sieveOfEratosthenes(50));
+
+Output:
+[2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47]
+
+Time Complexity
+# O(N log log N) — Much faster than checking each number individually.
+
+---------------------------------------------------------------------------------------------------------------------------
+
+23. Find the Most Frequent Element in an Object Array
+
+Problem Statement:
+You are given an array of objects where each object represents a product with a name and a category. Your task is to find the most frequently occurring category.
+
+const products = [
+  { name: "Laptop", category: "Electronics" },
+  { name: "Shirt", category: "Clothing" },
+  { name: "Mobile", category: "Electronics" },
+  { name: "Jeans", category: "Clothing" },
+  { name: "Tablet", category: "Electronics" },
+  { name: "Sofa", category: "Furniture" }
+];
+
+Output: Electronics
+
+Solution Approach:
+
+1.Use an object (hashmap) to store the frequency of each category.
+2.Iterate through the array and update counts.
+3.Find the category with the highest count.
+
+Solution:
+
+function mostFrequentCategory(products) {
+    let categoryCount = {};
+
+    // Count the frequency of each category
+    for (let product of products) {
+        categoryCount[product.category] = (categoryCount[product.category] || 0) + 1;
+    }
+
+    // Find the category with the maximum count
+    let maxCategory = null;
+    let maxCount = 0;
+
+    for (let category in categoryCount) {
+        if (categoryCount[category] > maxCount) {
+            maxCategory = category;
+            maxCount = categoryCount[category];
+        }
+    }
+
+    return maxCategory;
+}
+
+// Example usage
+const products = [
+    { name: "Laptop", category: "Electronics" },
+    { name: "Shirt", category: "Clothing" },
+    { name: "Mobile", category: "Electronics" },
+    { name: "Jeans", category: "Clothing" },
+    { name: "Tablet", category: "Electronics" },
+    { name: "Sofa", category: "Furniture" }
+];
+
+console.log("Most frequent category:", mostFrequentCategory(products));
+
+----------------------------------------------------------------------------------------------------------------
+
+24. Merge two sorted arrays
+let a = [2, 4, 7, 10], b = [2, 3];
+
+Output: [ 2, 2, 3, 4, 7, 10 ]
+
+Brute-force:
+function merge(ar1,ar2){
+
+  let combined = [...ar1, ...ar2];
+  return combined.sort((a,b)=>a-b);
+}
+
+
+Brute-force:
+let a = [2, 4, 7, 10], b = [2, 3];
+
+function mergeArray(a, b){
+  let newArr = [...a, ...b];   //or let newArr = a.concat(b);
+
+  for(let i=0; i<newArr.length; i++){
+    for(let j=0; j<newArr.length; j++){
+      
+      if(newArr[i] <= newArr[j]){
+        //do swap 
+        [newArr[i],newArr[j]] = [newArr[j],newArr[i]]
+      }
+    }  
+  }
+  
+  return newArr;  
+}
+
+console.log(mergeArray(a,b))
+
+Output: [ 2, 2, 3, 4, 7, 10 ]
+
+optimizations:
+let a = [2, 4, 7, 10], b = [2, 3];
+
+function mergeArray(a, b){
+  let i=0;
+  let j=0;
+  let result = [];
+  
+  // merge Array in sorted Array
+  while(i < a.length && j < b.length){
+    
+    if(a[i] < b[j]){
+      result.push(a[i]);
+      i++;
+    }else{
+      result.push(b[j]);
+      j++;
+    }
+  }
+  
+  //push remaining elem
+  while(i<a.length){
+    result.push(a[i]);
+    i++;
+  }
+  
+  while(j < b.length){
+    result.push(b[j])
+    j++
+  }
+  
+  return result;
+}
+
+console.log(mergeArray(a,b))
+
+Output: [ 2, 2, 3, 4, 7, 10 ] 
+
+Time Complexity Analysis:
+O(n + m) → Where n and m are the sizes of arrays a and b, respectively.
+This is efficient because we traverse both arrays only once.
+
+------------------------------------------------------------------------------------------------------------------------------
+
+25.Find Leader in an array
+
+let arr = [16, 17, 4, 3, 5, 2];
+Output: [17, 5, 2]
+
+To find all leaders in the array, we can iterate from right to left while keeping track of the maximum element encountered so far.
+
+Optimized Approach (Right-to-Left Traversal):
+
+1.Start from the last element (which is always a leader).
+2.Keep track of the maximum element found so far.
+3.Traverse the array in reverse order, adding elements that are greater than or equal to this maximum.
+4.Time Complexity: O(n) → Since we traverse the array only once.
+
+function findLeaders(arr) {
+    let n = arr.length;
+    let leaders = [];
+    let maxSoFar = arr[n - 1]; // Rightmost element is always a leader
+    leaders.push(maxSoFar);
+
+    // Traverse from second last element to the first
+    for (let i = n - 2; i >= 0; i--) {
+        if (arr[i] >= maxSoFar) {
+            maxSoFar = arr[i];
+            leaders.push(maxSoFar);
+        }
+    }
+
+    return leaders.reverse(); // Reverse to maintain the original order
+}
+
+// Example usage
+let arr = [16, 17, 4, 3, 5, 2];
+console.log(findLeaders(arr));  // Output: [17, 5, 2]
+
+Explanation
+Start from 2 (last element, always a leader).
+Move left:
+5 > 2 → Add 5.
+3 < 5 → Ignore.
+4 < 5 → Ignore.
+17 > 5 → Add 17.
+16 < 17 → Ignore.
+Final leaders array: [17, 5, 2]
+
+----------------------------------------------------------------------------------------------------------------------------
+
+26. Remove given Key from Object
+
+function removeKeys(input, keysToRemove) {
+  keysToRemove.forEach(key => {
+    delete input[key];
+  });
+  return input;
+}
+
+const input = { a: 1, b: 2, c: 3 };
+const keysToRemove = ['b', 'c'];
+
+const result = removeKeys(input, keysToRemove);
+console.log(result); 
+
+Output:
+
+{ a: 1 }
+
+------------------------------------------------------------------------------------------------------------------------------
+
+27. Longest Consecutive Sequence
+
+// Test Cases
+console.log(longestConsecutive([100, 4, 200, 1, 3, 2])); // Output: 4 (Sequence: [1, 2, 3, 4])
+console.log(longestConsecutive([9, 1, 4, 7, 3, 2, 6, 5, 8, 10])); // Output: 10 (Sequence: [1,2,3,4,5,6,7,8,9,10])
+console.log(longestConsecutive([0, -1])); // Output: 2 (Sequence: [-1, 0])
+console.log(longestConsecutive([10, 20, 30, 40])); // Output: 1 (No consecutive sequence)
+console.log(longestConsecutive([])); // Output: 0 (Empty input)
+
+
+Optimized Approach (Using a Hash Set)
+To efficiently find the longest consecutive sequence, we can use a HashSet (Set in JavaScript) to store all numbers and check for sequences in O(n) time complexity.
+
+function longestConsecutive(nums) {
+    if (nums.length === 0) return 0;
+
+    let numSet = new Set(nums); // Store all numbers in a Set for O(1) lookups
+    let maxLength = 0;
+
+    for (let num of numSet) {
+        // Check if it's the start of a sequence (num - 1 should not exist)
+        if (!numSet.has(num - 1)) {
+            let currentNum = num;
+            let currentStreak = 1;
+
+            // Expand the sequence
+            while (numSet.has(currentNum + 1)) {
+                currentNum++;
+                currentStreak++;
+            }
+
+            // Update maxLength if a longer sequence is found
+            maxLength = Math.max(maxLength, currentStreak);
+        }
+    }
+
+    return maxLength;
+}
+
+// Test Cases
+console.log(longestConsecutive([100, 4, 200, 1, 3, 2])); // Output: 4 (Sequence: [1, 2, 3, 4])
+console.log(longestConsecutive([9, 1, 4, 7, 3, 2, 6, 5, 8, 10])); // Output: 10 (Sequence: [1,2,3,4,5,6,7,8,9,10])
+console.log(longestConsecutive([0, -1])); // Output: 2 (Sequence: [-1, 0])
+console.log(longestConsecutive([10, 20, 30, 40])); // Output: 1 (No consecutive sequence)
+console.log(longestConsecutive([])); // Output: 0 (Empty input)
+
+
+Explanation
+Store elements in a Set → Quick lookup in O(1) time.
+Find sequence starts → A number is a sequence start if num - 1 is not in the set.
+Expand the sequence → Keep checking for num + 1 and count the streak.
+Update maxLength → Track the longest sequence found.
+
+
+Time & Space Complexity
+Time Complexity: (O(n)) (Each element is checked at most twice)
+Space Complexity: (O(n)) (Set stores all elements)
+This approach ensures an efficient solution compared to sorting-based methods (O(n log n)). 🚀
+
+
+Brute Force Approach (O(n²) Time Complexity)
+In a brute force solution, we check each number to see how long a consecutive sequence it can form. This results in an O(n²) time complexity, which is inefficient for large inputs.
+
+function longestConsecutiveBruteForce(nums) {
+    if (nums.length === 0) return 0;
+
+    let maxLength = 0;
+
+    for (let i = 0; i < nums.length; i++) {
+        let currentNum = nums[i];
+        let currentStreak = 1;
+
+        // Check if next consecutive numbers exist in the array
+        while (nums.includes(currentNum + 1)) {
+            currentNum++;
+            currentStreak++;
+        }
+
+        maxLength = Math.max(maxLength, currentStreak);
+    }
+
+    return maxLength;
+}
+
+// Test Cases
+console.log(longestConsecutiveBruteForce([100, 4, 200, 1, 3, 2])); // Output: 4 (Sequence: [1, 2, 3, 4])
+console.log(longestConsecutiveBruteForce([9, 1, 4, 7, 3, 2, 6, 5, 8, 10])); // Output: 10 (Sequence: [1,2,3,4,5,6,7,8,9,10])
+console.log(longestConsecutiveBruteForce([0, -1])); // Output: 2 (Sequence: [-1, 0])
+console.log(longestConsecutiveBruteForce([10, 20, 30, 40])); // Output: 1 (No consecutive sequence)
+console.log(longestConsecutiveBruteForce([])); // Output: 0 (Empty input)
+------------------------------------------------------------------------------------------------------------------------------
+
+28. Check if two arrays are permutations of each other. - [Frequency Counting]
+
+checkPermutation([1, 2, 3, 4], [4, 3, 2, 1])
+output: true
+
+checkPermutation([1, 2, 3], [1, 2, 2])
+output: false
+
+function checkPermutationSort(arr1, arr2) {
+    if (arr1.length !== arr2.length) return false;
+    arr1.sort((a, b) => a - b);
+    arr2.sort((a, b) => a - b);
+    return JSON.stringify(arr1) === JSON.stringify(arr2);
+}
+
+// Test Cases
+console.log(checkPermutationSort([1, 2, 3, 4], [4, 3, 2, 1])); // true
+console.log(checkPermutationSort([1, 2, 3], [1, 2, 2])); // false
+console.log(checkPermutationSort([5, 6, 7, 8], [8, 7, 6, 5])); // true
+console.log(checkPermutationSort([1, 2, 3], [1, 2, 3, 4])); // false
+console.log(checkPermutationSort([], [])); // true
+
+Optimized Approach (Using Hash Map / Object)
+Instead of sorting, we use a hash map (object) to count frequencies in O(n) time.
+
+function checkPermutation(arr1, arr2) {
+    if (arr1.length !== arr2.length) return false; // Different lengths → Not permutations
+
+    let frequencyMap = {};
+
+    // Count occurrences in arr1
+    for (let num of arr1) {
+        frequencyMap[num] = (frequencyMap[num] || 0) + 1;
+    }
+
+    // Decrease occurrences using arr2
+    for (let num of arr2) {
+        if (!frequencyMap[num]) return false; // Element missing or extra
+        frequencyMap[num]--;
+    }
+
+    return true;
+}
+
+// Test Cases
+console.log(checkPermutation([1, 2, 3, 4], [4, 3, 2, 1])); // true
+console.log(checkPermutation([1, 2, 3], [1, 2, 2])); // false
+console.log(checkPermutation([5, 6, 7, 8], [8, 7, 6, 5])); // true
+console.log(checkPermutation([1, 2, 3], [1, 2, 3, 4])); // false
+console.log(checkPermutation([], [])); // true (Empty arrays are permutations)
+
+--------------------------------------------------------------------------------------------------------------------------------
+
+29. Count Uppercase, Lowercase, and Digits in a String
+Problem: Write a function that takes a string and counts the number of uppercase letters, lowercase letters, and digits using ASCII values.
+
+Example Input:
+
+countCharacters("Hello123");
+{ uppercase: 1, lowercase: 4, digits: 3 }
+
+Solution:
+function countCharacters(str) {
+    let counts = { uppercase: 0, lowercase: 0, digits: 0 };
+
+    for (let char of str) {
+        let ascii = char.charCodeAt(0);
+
+        if (ascii >= 65 && ascii <= 90) {
+            counts.uppercase++;  // A-Z
+        } else if (ascii >= 97 && ascii <= 122) {
+            counts.lowercase++;  // a-z
+        } else if (ascii >= 48 && ascii <= 57) {
+            counts.digits++;     // 0-9
+        }
+    }
+
+    return counts;
+}
+
+// Example usage
+console.log(countCharacters("Hello123")); 
+// Output: { uppercase: 1, lowercase: 4, digits: 3 }
+
+console.log(countCharacters("A1b2C3d4E5"));
+// Output: { uppercase: 3, lowercase: 2, digits: 5 }
+
+Explanation:
+Initialize an object counts to track uppercase, lowercase, and digits.
+Iterate through each character of the string.
+Use char.charCodeAt(0) to get the ASCII value.
+Check if the ASCII value falls within:
+65-90 → Uppercase letters (A-Z)
+97-122 → Lowercase letters (a-z)
+48-57 → Digits (0-9)
+Increment the corresponding counter in the counts object.
+Return the final counts.
+
+--------------------------------------------------------------------------------------------------------------------------------
+
+30. Remove Kyes from an array of objects
+
+const data = [{
+    id: 1,
+    name: 'John',
+    age: 30
+}, {
+    id: 2,
+    name: 'Jane',
+    age: 25
+}, {
+    id: 3,
+    name: 'Bob',
+    age: 25
+}] ;
+
+function removeKeys(arr, keys) {
+ 
+ return arr.map(({keys, ...rest}) => rest);
+}
+
+let result = removeKeys(data, age);
+
+[
+  { id: 1, name: 'John' },
+  { id: 2, name: 'Jane' },
+  { id: 3, name: 'Bob' }
+]
+
+--------------------------------------------------------------------------------------------------------------------------------
+
+31. Valid Palendrome - string
+A phrase is a palindrome if, after converting all uppercase letters into lowercase letters and removing all non-alphanumeric characters, it reads the same forward and backward. Alphanumeric characters include letters and numbers.
+
+Given a string s, return true if it is a palindrome, or false otherwise.
+
+Example 1:
+
+Input: s = "A man, a plan, a canal: Panama"
+Output: true
+Explanation: "amanaplanacanalpanama" is a palindrome.
+Example 2:
+
+Input: s = "race a car"
+Output: false
+Explanation: "raceacar" is not a palindrome.
+Example 3:
+
+Input: s = " "
+Output: true
+Explanation: s is an empty string "" after removing non-alphanumeric characters.
+Since an empty string reads the same forward and backward, it is a palindrome.
+
+Solution:
+
+/**
+ * @param {string} s
+ * @return {boolean}
+ */
+var isPalindrome = function(s) {
+    let str = s.replace(/[^a-zA-Z0-9]/g,'');   // Removes all special characters
+  str = str.toLowerCase();
+
+  let str2 = '';
+  
+  for(let i=str.length-1; i >= 0; i--){
+    str2 += str[i];  
+  }
+  
+  if(str === str2){
+    return true;
+  }else{
+    return false;
+  }
+};
+
+--------------------------------------------------------------------------------------------------------------------------------
+
+32. Longest Palindromic Substring - string
+
+input s = 'babad' output='aba' is also valid answer
+
+input s = 'cbbd' output = 'bb' 
+
+Solution:
+
+function getValidPalindrome(s){
+  let rev = '';
+  
+  for(let i=0; i<s.length; i++){
+    for(let j=i; j<s.length; j++){
+      let substr = s.substring(i, j+1);
+      
+      if(substr == substr.split('').reverse().join('') && substr.length > rev.length){
+        rev = substr
+      }
+    }
+  }
+  return rev;
+}
+let s = 'babad';
+let result = getValidPalindrome(s);
+console.log(result);  // output: 'bab'
+
+--------------------------------------------------------------------------------------------------------------------------------
+
+33. The Dutch National Flag problem.
+ 
+also known as the three-way partitioning problem, involves sorting an array of elements consisting of three distinct values (e.g., 0, 1, and 2) in such a way that elements of the same value are grouped together. Here's an easy and efficient way to solve it in JavaScript:
+
+// JavaScript Program to sort an array of 0s, 1s and 2s
+// by counting the occurrence of 0s, 1s and 2s
+
+// Function to sort an array of 0s, 1s and 2s
+function sort012(arr) {
+    let c0 = 0, c1 = 0, c2 = 0;
+
+    // Count 0s, 1s, and 2s
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[i] === 0) 
+            c0 += 1;
+        else if (arr[i] === 1) 
+            c1 += 1;
+        else
+            c2 += 1;
+    }
+
+    let idx = 0;
+    // Place all the 0s
+    for (let i = 0; i < c0; i++) 
+        arr[idx++] = 0;
+
+    // Place all the 1s
+    for (let i = 0; i < c1; i++) 
+        arr[idx++] = 1;
+
+    // Place all the 2s
+    for (let i = 0; i < c2; i++) 
+        arr[idx++] = 2;
+}
+
+let arr = [0, 1, 2, 0, 1, 2];
+sort012(arr);
+
+console.log(arr.join(' '));
+// Output: 0 0 1 1 2 2
+
+------------------------------------------------------------------------------------------------------------------------------------
+
+34. Find the longest common prefix string amongst an array of strings.
+
+Write a function to find the longest common prefix string amongst an array of strings.
+
+If there is no common prefix, return an empty string "".
+
+Example 1:
+
+Input: strs = ["flower","flow","flight"]
+Output: "fl"
+  
+Example 2:
+
+Input: strs = ["dog","racecar","car"]
+Output: ""
+Explanation: There is no common prefix among the input strings. 
+
+Constraints:
+
+1 <= strs.length <= 200
+0 <= strs[i].length <= 200
+strs[i] consists of only lowercase English letters.
+
+//Method 1: 
+
+function longestCommonPrefix(strs) {
+    if (strs.length === 0) return ""; // No strings in the array
+
+    // Sort the array to bring similar prefixes closer
+    strs.sort();
+
+    // Compare the first and last string only, as they will be the most dissimilar
+    const first = strs[0];
+    const last = strs[strs.length - 1];
+
+    let i = 0;
+    while (i < first.length && first[i] === last[i]) {
+        i++;
+    }
+
+    return first.slice(0, i); // Common prefix
+}
+
+// Example usage:
+console.log(longestCommonPrefix(["flower", "flow", "flight"])); // Output: "fl"
+console.log(longestCommonPrefix(["dog", "racecar", "car"])); // Output: ""
+
+// Method 2:
+
+function longestCommonPrefix(strs) {
+    if (strs.length === 0) return ""; // No strings in the array
+
+    // Start with the first string as the prefix
+    let prefix = strs[0];
+
+    // Compare the prefix with each subsequent string
+    for (let i = 1; i < strs.length; i++) {
+        // Keep reducing the prefix until it matches the start of the current string
+        while (strs[i].indexOf(prefix) !== 0) {
+            prefix = prefix.slice(0, -1); // Remove the last character from the prefix
+            if (prefix === "") return ""; // No common prefix
+        }
+    }
+
+    return prefix;
+}
+
+// Example usage:
+console.log(longestCommonPrefix(["flower", "flow", "flight"])); // Output: "fl"
+console.log(longestCommonPrefix(["dog", "racecar", "car"])); // Output: ""
+
+----------------------------------------------------------------------------------------------------------------------------------
+
+35. Smallest Missing Integer Greater Than Sequential Prefix Sum
+
+You are given a 0-indexed array of integers nums.
+
+A prefix nums[0..i] is sequential if, for all 1 <= j <= i, nums[j] = nums[j - 1] + 1. In particular, the prefix consisting only of nums[0] is sequential.
+
+Return the smallest integer x missing from nums such that x is greater than or equal to the sum of the longest sequential prefix.
+
+Example 1:
+
+Input: nums = [1,2,3,2,5]
+Output: 6
+Explanation: The longest sequential prefix of nums is [1,2,3] with a sum of 6. 6 is not in the array, therefore 6 is the smallest missing integer greater than or equal to the sum of the longest sequential prefix.
+Example 2:
+
+Input: nums = [3,4,5,1,12,14,13]
+Output: 15
+Explanation: The longest sequential prefix of nums is [3,4,5] with a sum of 12. 12, 13, and 14 belong to the array while 15 does not. Therefore 15 is the smallest missing integer greater than or equal to the sum of the longest sequential prefix.
+ 
+
+Constraints:
+
+1 <= nums.length <= 50
+1 <= nums[i] <= 50
+
+
+function findSmallestMissing(nums) {
+    let sum = nums[0];
+     
+    let i = 1;
+
+    // Find the longest sequential prefix
+    while (i < nums.length && nums[i] === nums[i - 1] + 1) {
+        sum += nums[i];
+        i++;
+    }
+    
+    console.log(sum)
+    
+    // Find the smallest missing integer >= sum 
+    // 
+    while (nums.includes(sum)) {      
+        sum++;
+        console.log('inside:',sum) //13,14,15
+    }
+
+    return sum;
+}
+
+// Example usage:
+// console.log(findSmallestMissing([1, 2, 3, 2, 5])); // Output: 6
+console.log(findSmallestMissing([3, 4, 5, 1, 12, 14, 13])); // Output: 15
+
+
+------------------------------------------------------------------------------------------------------------------------------------
+
+36. Best Time to Buy and Sell Stock [Greedy]
+
+You are given an array prices where prices[i] is the price of a given stock on the ith day.
+
+You want to maximize your profit by choosing a single day to buy one stock and choosing a different day in the future to sell that stock.
+
+Return the maximum profit you can achieve from this transaction. If you cannot achieve any profit, return 0.
+
+ 
+Example 1:
+
+Input: prices = [7,1,5,3,6,4]
+Output: 5
+Explanation: Buy on day 2 (price = 1) and sell on day 5 (price = 6), profit = 6-1 = 5.
+Note that buying on day 2 and selling on day 1 is not allowed because you must buy before you sell.
+Example 2:
+
+Input: prices = [7,6,4,3,1]
+Output: 0
+Explanation: In this case, no transactions are done and the max profit = 0.
+ 
+
+Constraints:
+
+1 <= prices.length <= 105
+0 <= prices[i] <= 104
+
+// let prices = [7,6,4,3,1];
+let prices = [7,1,5,3,6,4]
+
+function maxStockProfit(prices){
+  
+/**
+ * @param {number[]} prices
+ * @return {number}
+*/
+
+  let profit = 0
+  let tempArr = 0;
+  let result = [];  
+  for(let i=0; i <= prices.length-1; i++){ 
+    for(let j=i; j <= prices.length-1; j++){                  
+      if(prices[i] <  prices[j]){        
+        profit = prices[j] - prices[i];         
+        result.push(profit);
+      }       
+    }  
+  }  
+  tempArr = result.sort((a,b) => a - b);
+  return result.length == 0 ? 0 : tempArr.at(-1);
+};
+
+let profit = maxStockProfit(prices)
+console.log(profit)
+
+optimizations:
+
+/**
+ * @param {number[]} prices
+ * @return {number}
+ */
+var maxProfit = function(prices) {
+  let minPrice = Infinity; // Track the minimum price encountered so far
+  let maxProfit = 0; // Track the maximum profit
+
+  for (let i = 0; i < prices.length; i++) {
+    // Update the minimum price if the current price is lower
+    if (prices[i] < minPrice) {
+        
+      minPrice = prices[i];
+    } else {
+      // Calculate the profit if we sell at the current price
+      let profit = prices[i] - minPrice;
+      // Update the maximum profit
+      maxProfit = Math.max(maxProfit, profit);
+    }
+  }
+
+  return maxProfit;
+};
+console.log('profit',maxProfit([7, 1, 5, 3, 6, 4])); // Output: 5 (Buy at 1, Sell at 6)
+// console.log(maxProfit([7, 6, 4, 3, 1])); // Output: 0 (No profit possible)
+
+-------------------------------------------------------------------------------------------------------------------------------
+
+37. Merge Strings Alternately
+
+You are given two strings word1 and word2. Merge the strings by adding letters in alternating order, starting with word1. If a string is longer than the other, append the additional letters onto the end of the merged string.
+
+Return the merged string.
+
+Example 1:
+
+Input: word1 = "abc", word2 = "pqr" Output: "apbqcr" Explanation: The merged string will be merged as so: word1: a b c word2: p q r merged: a p b q c r Example 2:
+
+Input: word1 = "ab", word2 = "pqrs" Output: "apbqrs" Explanation: Notice that as word2 is longer, "rs" is appended to the end. word1: a b word2: p q r s merged: a p b q r s Example 3:
+
+Input: word1 = "abcd", word2 = "pq" Output: "apbqcd" Explanation: Notice that as word1 is longer, "cd" is appended to the end. word1: a b c d word2: p q merged: a p b q c d
+
+Constraints:
+
+1 <= word1.length, word2.length <= 100 word1 and word2 consist of lowercase English letters.
+
+Solution:
+
+You can solve this problem using a **two-pointer approach** by iterating through both strings and adding letters alternatively.
+
+### **Solution in JavaScript:**
+```javascript
+function mergeAlternately(word1, word2) {
+    let merged = "";
+    let i = 0, j = 0;
+
+    while (i < word1.length || j < word2.length) {
+        if (i < word1.length) merged += word1[i++];
+        if (j < word2.length) merged += word2[j++];
+    }
+
+    return merged;
+}
+
+// Example Test Cases
+console.log(mergeAlternately("abc", "pqr"));   // Output: "apbqcr"
+console.log(mergeAlternately("ab", "pqrs"));   // Output: "apbqrs"
+console.log(mergeAlternately("abcd", "pq"));   // Output: "apbqcd"
+```
+
+---
+
+### **Explanation:**
+1. **Use two pointers** (`i` for `word1`, `j` for `word2`).
+2. **Iterate through both words**, adding characters in alternating order.
+3. If one word is longer, append the remaining characters.
+4. Return the merged string.
+
+---
+
+### **Time Complexity:**
+- **O(N + M)** → Where `N` and `M` are the lengths of `word1` and `word2`.
+
+---------------------------------------------------------------------------------------------------------------------------------
+
+38. Greatest Common Divisor of Strings
+
+For two strings s and t, we say "t divides s" if and only if s = t + t + t + ... + t + t (i.e., t is concatenated with itself one or more times).
+
+Given two strings str1 and str2, return the largest string x such that x divides both str1 and str2.
+
+Example 1:
+
+Input: str1 = "ABCABC", str2 = "ABC"
+Output: "ABC"
+Example 2:
+
+Input: str1 = "ABABAB", str2 = "ABAB"
+Output: "AB"
+Example 3:
+
+Input: str1 = "LEET", str2 = "CODE"
+Output: ""
+ 
+
+Constraints:
+
+1 <= str1.length, str2.length <= 1000
+str1 and str2 consist of English uppercase letters.
+
+Solution:
+function gcdOfStrings(str1, str2) {
+    // Start with the shorter string
+    let candidate = str1.length < str2.length ? str1 : str2;
+ 
+    while (candidate.length > 0) {
+        if (str1.split(candidate).join('') === ""
+        && str2.split(candidate).join('') === "") {
+            return candidate; // Valid common divisor
+        }
+        candidate = candidate.slice(0, -1); // Remove the last character
+  
+    }
+
+    return ""; // No common divisor
+}
+
+// Example cases
+// console.log(gcdOfStrings("ABCABC", "ABC")); // Output: "ABC"
+// console.log(gcdOfStrings("ABABAB", "ABAB")); // Output: "AB"
+console.log(gcdOfStrings("LEET", "LEET")); // Output: ""
+
+---------------------------------------------------------------------------------------------------------------------------------
+
+39. Product of Array Except Self
+Given an integer array nums, return an array answer such that answer[i] is equal to the product of all the elements of nums except nums[i].
+
+The product of any prefix or suffix of nums is guaranteed to fit in a 32-bit integer.
+
+You must write an algorithm that runs in O(n) time and without using the division operation.
+
+Example 1:
+
+Input: nums = [1,2,3,4]
+Output: [24,12,8,6]
+Example 2:
+
+Input: nums = [-1,1,0,-3,3]
+Output: [0,0,9,0,0]
+ 
+
+Constraints:
+
+2 <= nums.length <= 105
+-30 <= nums[i] <= 30
+The input is generated such that answer[i] is guaranteed to fit in a 32-bit integer.
+ 
+
+Follow up: Can you solve the problem in O(1) extra space complexity? (The output array does not count as extra space for space complexity analysis.)
+
+Solution:
+
+function productExceptSelf(nums) {
+    let n = nums.length;
+    let answer = Array(n).fill(1);
+
+    for (let i = 0; i < n; i++) {
+        let product = 1;
+        for (let j = 0; j < n; j++) {
+            if (i !== j) {
+                product *= nums[j];
+            }
+        }
+        answer[i] = product;
+    }
+
+    return answer;
+}
+
+// Example cases
+console.log(productExceptSelf([1,2,3,4])); // Output: [24,12,8,6]
+console.log(productExceptSelf([-1,1,0,-3,3])); // Output: [0,0,9,0,0]
+
+Optimized Approach (O(n) Time, O(1) Extra Space)
+
+We compute the prefix and suffix product in-place in two passes.
+
+function productExceptSelf(nums) {
+    let n = nums.length;
+    let answer = Array(n).fill(1);
+
+    // Compute prefix products
+    let prefix = 1;
+    for (let i = 0; i < n; i++) {
+        answer[i] = prefix;  // Store prefix product
+        prefix *= nums[i];    // Update prefix
+    }
+
+    // Compute suffix products and update answer array
+    let suffix = 1;
+    for (let i = n - 1; i >= 0; i--) {
+        answer[i] *= suffix;  // Multiply with suffix product
+        suffix *= nums[i];    // Update suffix
+    }
+
+    return answer;
+}
+
+// Example cases
+console.log(productExceptSelf([1,2,3,4])); // Output: [24,12,8,6]
+console.log(productExceptSelf([-1,1,0,-3,3])); // Output: [0,0,9,0,0]
+-------------------------------------------------------------------------------------------------------------------------------
+
+40. Is Subsequence
+
+Given two strings s and t, return true if s is a subsequence of t, or false otherwise.
+
+A subsequence is a sequence that can be derived from another sequence by deleting some or no elements without changing the order of the remaining elements.
+
+Example 1: Input: s = "abc", t = "ahbgdc" Output: true
+
+Example 2:
+Input: s = "axc", t = "ahbgdc"
+Output: false
+
+Complexity Analysis
+Time Complexity: O(n), where n is the length of s.
+Space Complexity: O(1), constant space.
+
+Optimized Approach (O(n) Time, O(1) Space)
+
+/**
+ * @param {string} s
+ * @param {string} t
+ * @return {boolean}
+ */
+var isSubsequence = function(s, t) {
+    let i = 0, j = 0; // Pointers for s and t
+
+    while (j < t.length) {
+        if (s[i] === t[j]) {
+            i++; // Move s pointer if there's a match
+        }
+        j++; // Always move t pointer
+        if (i === s.length) return true; // If all chars of s are found in t
+    }
+
+    return i === s.length;
+};
+
+// Example cases
+console.log(isSubsequence("abc", "ahbgdc")); // Output: true
+console.log(isSubsequence("axc", "ahbgdc")); // Output: false
+
+Explanation
+Two pointers: i for s and j for t.
+Iterate through t and check if the current character of s matches the current character of t.
+If a match is found, move the s pointer forward.
+If all chars of s are found in t, return true. Otherwise, return false.
+
+---------------------------------------------------------------------------------------------------------------------------------------
+
+41. Find difference of two arrays
+
+Given two 0-indexed integer arrays nums1 and nums2, return a list answer of size 2 where:
+
+answer[0] is a list of all distinct integers in nums1 which are not present in nums2.
+answer[1] is a list of all distinct integers in nums2 which are not present in nums1.
+Note that the integers in the lists may be returned in any order.
+
+Example 1:
+
+Input: nums1 = [1,2,3], nums2 = [2,4,6]
+Output: [[1,3],[4,6]]
+Explanation:
+For nums1, nums1[1] = 2 is present at index 0 of nums2, whereas nums1[0] = 1 and nums1[2] = 3 are not present in nums2. Therefore, answer[0] = [1,3].
+For nums2, nums2[0] = 2 is present at index 1 of nums1, whereas nums2[1] = 4 and nums2[2] = 6 are not present in nums2. Therefore, answer[1] = [4,6].
+Example 2:
+
+Input: nums1 = [1,2,3,3], nums2 = [1,1,2,2]
+Output: [[3],[]]
+Explanation:
+For nums1, nums1[2] and nums1[3] are not present in nums2. Since nums1[2] == nums1[3], their value is only included once and answer[0] = [3].
+Every integer in nums2 is present in nums1. Therefore, answer[1] = [].
+ 
+
+Constraints:
+
+1 <= nums1.length, nums2.length <= 1000
+-1000 <= nums1[i], nums2[i] <= 1000
+
+Solution:
+
+/**
+ * @param {number[]} nums1
+ * @param {number[]} nums2
+ * @return {number[][]}
+ */
+var findDifference = function(nums1, nums2) {
+  let set1 = new Set(nums1);
+  let set2 = new Set(nums2);
+  
+  let diff1 = [...set1].filter((num)=> !set2.has(num));
+  let diff2 = [...set2].filter((num)=> !set1.has(num));
+  
+  return [diff1, diff2];
+};
+
+
+---------------------------------------------------------------------------------------------------------------------------------------
+
+42. Prefix Sum
+
+// Input: nums = [1,7,3,6,5,6]
+// Output: 3
+// Explanation:
+// The pivot index is 3.
+// Left sum = nums[0] + nums[1] + nums[2] = 1 + 7 + 3 = 11
+// Right sum = nums[4] + nums[5] = 5 + 6 = 11
+
+function findPivotIndex(arr){
+  let totalSum = 0;
+  let leftSum = 0;
+  
+  //cal total sum
+  for(let elem of arr){
+    totalSum += elem;
+  }
+
+  for(let i=0; i < arr.length-1; i++){
+    
+    let rigthSum = totalSum - leftSum - arr[i];
+       
+    
+    if(rigthSum == leftSum){
+      return i;
+    } 
+    leftSum += arr[i]; 
+  }
+  return -1
+}
+
+let nums = [2,1,-1];
+let result = findPivotIndex(nums)
+console.log(result); // 0
+
+------------------------------------------------------------------------------------------------------------------------------------
+
+43. Longest Substring Without Repeating Characters
+
+Problem:
+Find the length of the longest substring without repeating characters.
+
+Sliding Window Implementation:
+
+function lengthOfLongestSubstring(s) {
+    let charSet = new Set();
+    let left = 0;
+    let maxLength = 0;
+
+    for (let right = 0; right < s.length; right++) {
+        // If the current character is a duplicate, shrink the window
+        while (charSet.has(s[right])) {
+            charSet.delete(s[left]);
+            left++; // Move left pointer
+        }
+        // Add the current character to the set
+        charSet.add(s[right]);
+        // Update the maximum length
+        maxLength = Math.max(maxLength, right - left + 1);
+    }
+
+    return maxLength;
+}
+
+------------------------------------------------------------------------------------------------------------------------------------
+
+44. Balanced Brackets
+
+function isBalanced(expression) {
+    const stack = [];
+    const matchingBrackets = {
+        ')': '(',
+        '}': '{',
+        ']': '['
+    };
+
+    for (const char of expression) {
+        if (char === '(' || char === '{' || char === '[') {
+            stack.push(char); // Push opening brackets onto the stack
+        } else if (char === ')' || char === '}' || char === ']') {
+            // Check if the stack is empty or doesn't match the corresponding opening bracket
+            if (stack.length === 0 || stack.pop() !== matchingBrackets[char]) {
+                return false; // Not balanced
+            }
+        }
+    }
+
+    // If the stack is empty, the expression is balanced
+    return stack.length === 0;
+}
+
+// Example Usage
+console.log(isBalanced("{[()]}")); // Output: true
+console.log(isBalanced("{[(])}")); // Output: false
+console.log(isBalanced("{[}"));    // Output: false
+
+-----------------------------------------------------------------------------------------------------------------------------------
+
+45. Coin Change Problem (Greedy)
+Problem: Given denominations of coins (e.g., {1, 5, 10, 25}), find the minimum number of coins to make a given amount.
+
+🔹 Greedy Strategy: Always pick the largest coin possible.
+
+Example
+If amount = 30 and coins {1, 5, 10, 25},
+
+Pick 25 → Remaining 5
+Pick 5 → Remaining 0
+
+Total coins used: 2 ({25, 5})
+
+Solution:
+
+function minCoins(coins, amount) {
+    coins.sort((a, b) => b - a); // Sort coins in descending order
+    let count = 0, i = 0;
+
+    while (amount > 0) {
+        if (coins[i] <= amount) {
+            amount -= coins[i];
+            count++;
+        } else {
+            i++; // Move to next smaller coin
+        }
+    }
+    return count;
+}
+
+// Example Usage
+const coins = [1, 5, 10, 25];
+console.log(minCoins(coins, 30)); // Output: 2
+
+---------------------------------------------------------------------------------------------------------------------------------
+
+46. Remove Spaces
+
+function removeSpaces(str){
+  let start = 0;
+  let end = str.length - 1;
+  
+  while(start <= end && str[start] == ' '){
+    start++;
+  }
+  
+  while(start >= end && str[end] == ' '){
+    end--
+  }
+  
+  return str.slice(start, end+1);
+}
+
+
+// Test Cases
+console.log(removeSpaces("   Hello, World!   "));  // Output: "Hello, World!"
+console.log(removeSpaces("   JavaScript   "));     // Output: "JavaScript"
+console.log(removeSpaces("NoSpaces"));            // Output: "NoSpaces"
+console.log(removeSpaces("      "));             // Output: "" (Empty String)
+console.log(removeSpaces("  Trim  Me  "));       // Output: "Trim  Me"
+
+-----------------------------------------------------------------------------------------------------------------------------------
+
+47. Find the Index of the First Occurrence in a String.
+
+Given two strings needle and haystack, return the index of the first occurrence of needle in haystack, or -1 if needle is not part of haystack.
+
+Example 1:
+
+Input: haystack = "sadbutsad", needle = "sad"
+Output: 0
+Explanation: "sad" occurs at index 0 and 6.
+The first occurrence is at index 0, so we return 0.
+Example 2:
+
+Input: haystack = "leetcode", needle = "leeto"
+Output: -1
+Explanation: "leeto" did not occur in "leetcode", so we return -1.
+ 
+Constraints:
+
+1 <= haystack.length, needle.length <= 104
+haystack and needle consist of only lowercase English characters.
+
+Solution:
+
+/**
+ * @param {string} haystack
+ * @param {string} needle
+ * @return {number}
+ */
+var strStr = function(haystack, needle) {
+    return haystack.indexOf(needle);
+};
+
+Without indexOf:
+
+function strStr(haystack, needle) {
+    let m = haystack.length, n = needle.length;
+
+    for (let i = 0; i <= m - n; i++) {
+        let j;
+        for (j = 0; j < n; j++) {
+            if (haystack[i + j] !== needle[j]) {
+                break;
+            }
+        }
+        if (j === n) {
+            return i; // Found the first occurrence
+        }
+    }
+    return -1; // Not found
+}
+
+// Example usage:
+console.log(strStr("hello", "ll")); // Output: 2
+console.log(strStr("sadbutsad", "sad")); // Output: 0
+console.log(strStr("leetcode", "leeto")); // Output: -1
+
+-----------------------------------------------------------------------------------------------------------------------------------
+
+48. Find the First Non-Repeating Character
+
+Description:
+Given a string s, return the index of the first non-repeating character. If there is no non-repeating character, return -1.
+
+Input: "leetcode"
+Output: 0
+Explanation: The first non-repeating character is 'l' at index 0.
+
+Input: "loveleetcode"
+Output: 2
+Explanation: The first non-repeating character is 'v' at index 2.
+
+Input: "aabb"
+Output: -1
+Explanation: All characters repeat, so return -1.
+
+function getNonRepeatChar(strg) {
+  let imap = new Map();
+
+  // Step 1: Count frequency of each character
+  for (let i = 0; i < strg.length; i++) {
+    imap.set(strg[i], (imap.get(strg[i]) || 0) + 1);
+  }
+
+  // Step 2: Find the first character with count == 1
+  for (let i = 0; i < strg.length; i++) {
+    if (imap.get(strg[i]) === 1) {
+      return i; // Return the correct index
+    }
+  }
+
+  return -1; // No non-repeating character found
+}
+
+// Example usage:
+console.log(getNonRepeatChar("leetcode"));      // Output: 0
+console.log(getNonRepeatChar("loveleetcode"));  // Output: 2
+console.log(getNonRepeatChar("aabb"));          // Output: -1
+
+-----------------------------------------------------------------------------------------------------------------------------------
+
+49. Reverse Words in a String - [Medium]
+    
+    Given an input string s, reverse the order of the words.
+
+A word is defined as a sequence of non-space characters. The words in s will be separated by at least one space.
+
+Return a string of the words in reverse order concatenated by a single space.
+
+Note that s may contain leading or trailing spaces or multiple spaces between two words. The returned string should only have a single space separating the words. Do not include any extra spaces.
+
+Example 1:
+
+Input: s = "the sky is blue"
+Output: "blue is sky the"
+Example 2:
+
+Input: s = "  hello world  "
+Output: "world hello"
+Explanation: Your reversed string should not contain leading or trailing spaces.
+Example 3:
+
+Input: s = "a good   example"
+Output: "example good a"
+Explanation: You need to reduce multiple spaces between two words to a single space in the reversed string.
+ 
+
+Constraints:
+
+- 1 <= s.length <= 104
+- s contains English letters (upper-case and lower-case), digits, and spaces ' '.
+- There is at least one word in s.
+ 
+
+Follow-up: If the string data type is mutable in your language, can you solve it in-place with O(1) extra space?
+
+function reverseWords(s) {
+    let result = "";
+    let word = "";
+    
+    // Step 1: Traverse the string in reverse
+    for (let i = s.length - 1; i >= 0; i--) {
+        const char = s[i];
+        
+        // Step 2: Build words character by character
+        if (char !== ' ') {
+            word = char + word;
+        } else if (word) { // If a word is completed and there's a space
+            if (result) result += " ";
+            result += word;
+            word = ""; // Reset for the next word
+        }
+    }
+    
+    // Step 3: Add the last word if it exists
+    if (word) {
+        if (result) result += " ";
+        result += word;
+    }
+
+    return result;
+}
+
+// Test cases
+console.log(reverseWords("the sky is blue"));       // Output: "blue is sky the"
+console.log(reverseWords("  hello world  "));       // Output: "world hello"
+console.log(reverseWords("a good   example"));      // Output: "example good a"
+console.log(reverseWords("   a"));                  // Output: "a"
+
+---------------------------------------------------------------------------
+
+50. Length of Last Word
+    Given a string s consisting of words and spaces, return the length of the last word in the string.
+
+A word is a maximal 
+substring
+ consisting of non-space characters only.
+
+Example 1:
+
+Input: s = "Hello World"
+Output: 5
+Explanation: The last word is "World" with length 5.
+Example 2:
+
+Input: s = "   fly me   to   the moon  "
+Output: 4
+Explanation: The last word is "moon" with length 4.
+Example 3:
+
+Input: s = "luffy is still joyboy"
+Output: 6
+Explanation: The last word is "joyboy" with length 6.
+ 
+Constraints:
+
+1 <= s.length <= 104
+s consists of only English letters and spaces ' '.
+There will be at least one word in s.
+
+/**
+ * @param {string} s
+ * @return {number}
+ */
+
+var lengthOfLargestWord = function(s) {
+  let str = s.trim();
+     
+     let arr = str.split(' ');
+     let imap = new Map();
+     
+     for(let i=0; i< arr.length; i++){
+            imap.set(arr[i], arr[i].length)    
+     };
+     
+     let sortMap = Array.from(imap).sort((a, b)=>b[1] - a[1])
+     // return largest string in array.
+     let output = sortMap[0].slice(1)
+     return parseInt(output);  
+};
+
+51. # Group similar elements together (e.g., even numbers first, then odd).
+
+Here’s a solution to **Group similar elements together** where we separate even numbers first, followed by odd numbers.
+
+---
+
+### **Problem Recap**
+Given an array of integers, rearrange the elements such that:
+1. All even numbers come first.
+2. All odd numbers come after the even numbers.
+3. The relative order within even and odd groups does not matter unless specified.
+
+---
+
+### **Solution 1: Using Partitioning (Two-Pointer Approach)**
+
+We use two pointers:
+- One pointer to place even numbers at the beginning.
+- The other to handle odd numbers.
+
+This approach is efficient with **O(n)** time complexity and **O(1)** space.
+
+```javascript
+function groupEvenOdd(nums) {
+  let left = 0; // Start of the array
+  let right = nums.length - 1; // End of the array
+
+  while (left < right) {
+    // If the left pointer is on an even number, move it forward
+    if (nums[left] % 2 === 0) {
+      left++;
+    } 
+    // If the right pointer is on an odd number, move it backward
+    else if (nums[right] % 2 !== 0) {
+      right--;
+    } 
+    // Swap odd on the left with even on the right
+    else {
+      [nums[left], nums[right]] = [nums[right], nums[left]];
+      left++;
+      right--;
+    }
+  }
+
+  return nums;
+}
+
+// Example Usage:
+const nums = [1, 2, 3, 4, 5, 6];
+console.log(groupEvenOdd(nums)); // Output: [6, 2, 4, 3, 5, 1] (or similar)
+```
+### **Solution 2: Using Filtering**
+
+You can split the array into two groups (even and odd) and then concatenate them.
+
+```javascript
+function groupEvenOdd(nums) {
+  const even = nums.filter(num => num % 2 === 0); // All even numbers
+  const odd = nums.filter(num => num % 2 !== 0);  // All odd numbers
+  return [...even, ...odd];
+}
+
+// Example Usage:
+const nums = [1, 2, 3, 4, 5, 6];
+console.log(groupEvenOdd(nums)); // Output: [2, 4, 6, 1, 3, 5]
+```
+
+---
+
+### **Solution 3: Maintain Original Order with Stable Partition**
+
+For preserving the original relative order, use a **Stable Partition** approach with a helper array.
+
+```javascript
+function groupEvenOddStable(nums) {
+  const result = [];
+  // Add all even numbers first
+  for (let num of nums) {
+    if (num % 2 === 0) result.push(num);
+  }
+  // Add all odd numbers next
+  for (let num of nums) {
+    if (num % 2 !== 0) result.push(num);
+  }
+  return result;
+}
+
+// Example Usage:
+const nums = [1, 2, 3, 4, 5, 6];
+console.log(groupEvenOddStable(nums)); // Output: [2, 4, 6, 1, 3, 5]
+```
+
+52. Given an array of strings, group them based on their lengths.
+
+### **Solution: Group by String Length**
+
+We can use a hash map (object) to group strings by their lengths.
+
+```javascript
+function groupByStringLength(strings) {
+  const lengthMap = {};
+
+  for (let str of strings) {
+    const len = str.length;
+    if (!lengthMap[len]) {
+      lengthMap[len] = [];
+    }
+    lengthMap[len].push(str);
+  }
+
+  return Object.values(lengthMap);
+}
+
+// Example Usage:
+const strings = ["cat", "dog", "elephant", "bat", "ant"];
+console.log(groupByStringLength(strings));
+// Output: [['cat', 'dog', 'bat', 'ant'], ['elephant']]
+```
+
+53. Group numbers based on the frequency of their digits. For example, numbers with repeated digits (`121`, `112`) should appear in one group, while numbers with unique digits (`123`) in another.
+---
+### **Solution: Group by Frequency Check**
+
+We use a helper function to determine whether a number has repeated digits.
+
+```javascript
+function groupByDigitFrequency(nums) {
+  const repeated = [];
+  const unique = [];
+
+  const hasRepeatedDigits = (num) => {
+    const str = Math.abs(num).toString();
+    const set = new Set(str);
+    return set.size !== str.length;
+  };
+
+  for (let num of nums) {
+    if (hasRepeatedDigits(num)) {
+      repeated.push(num);
+    } else {
+      unique.push(num);
+    }
+  }
+
+  return [...unique, ...repeated];
+}
+
+// Example Usage:
+const nums = [123, 112, 456, 121, 789];
+console.log(groupByDigitFrequency(nums));
+// Output: [123, 456, 789, 112, 121]
+```
+
+54. Group by Multiple Conditions (Even, Odd, Negative, Positive)**
+
+const nums = [-5, 3, -2, 4, -1, 2, 7];
+
+**Problem:**  
+Rearrange the array such that:
+1. All negative numbers come first.
+2. Followed by even numbers.
+3. Followed by odd numbers.
+4. Maintain relative order within each group.
+
+---
+
+### **Solution: Stable Partition with Multiple Conditions**
+
+We can use the **Stable Partition** approach to group elements into three categories:  
+1. Negative numbers.  
+2. Positive even numbers.  
+3. Positive odd numbers.  
+
+```javascript
+function groupByConditions(nums) {
+  const negatives = [];
+  const evens = [];
+  const odds = [];
+
+  for (let num of nums) {
+    if (num < 0) {
+      negatives.push(num);
+    } else if (num % 2 === 0) {
+      evens.push(num);
+    } else {
+      odds.push(num);
+    }
+  }
+
+  return [...negatives, ...evens, ...odds];
+}
+
+// Example Usage:
+const nums = [-5, 3, -2, 4, -1, 2, 7];
+console.log(groupByConditions(nums));
+// Output: [-5, -2, -1, 4, 2, 3, 7]
+```
+
+55. Rotate Clockwise
+let arr = [1,2,3,4,5,6];
+
+function rotateClockwise(arr, k){
+    // k Number of rotations
+    let n = arr.length;
+    
+    for(let i=0; i < k; i++){
+      
+      
+      let last = arr[n-1];  
+      
+      for(let j=n-1; j>0; j--){
+      
+        //shift each elem 
+        arr[j] = arr[j-1]
+        
+      }
+      arr[0] = last;
+    }
+    return arr;
+}
+
+console.log(rotateClockwise(arr,2))
+Output:
+[ 5, 6, 1, 2, 3, 4 ]
+
+
+56. Given an array of characters chars, compress it using the following algorithm:
+
+Begin with an empty string s. For each group of consecutive repeating characters in chars:
+
+If the group's length is 1, append the character to s.
+Otherwise, append the character followed by the group's length.
+The compressed string s should not be returned separately, but instead, be stored in the input character array chars. Note that group lengths that are 10 or longer will be split into multiple characters in chars.
+
+After you are done modifying the input array, return the new length of the array.
+
+You must write an algorithm that uses only constant extra space.
+
+Example 1:
+
+Input: chars = ["a","a","b","b","c","c","c"]
+Output: Return 6, and the first 6 characters of the input array should be: ["a","2","b","2","c","3"]
+Explanation: The groups are "aa", "bb", and "ccc". This compresses to "a2b2c3".
+Example 2:
+
+Input: chars = ["a"]
+Output: Return 1, and the first character of the input array should be: ["a"]
+Explanation: The only group is "a", which remains uncompressed since it's a single character.
+Example 3:
+
+Input: chars = ["a","b","b","b","b","b","b","b","b","b","b","b","b"]
+Output: Return 4, and the first 4 characters of the input array should be: ["a","b","1","2"].
+Explanation: The groups are "a" and "bbbbbbbbbbbb". This compresses to "ab12".
+ 
+
+Constraints:
+
+1 <= chars.length <= 2000
+chars[i] is a lowercase English letter, uppercase English letter, digit, or symbol.
+```
+Here's an **efficient JavaScript solution** using **constant extra space (O(1))**:
+
+---
+
+### **Approach**
+1. Use a **pointer `i`** to traverse the array.
+2. Use a **write pointer `writeIndex`** to track where the compressed characters should be written.
+3. For each group of consecutive characters:
+   - Write the character to `chars[writeIndex]` and increment `writeIndex`.
+   - If the group has more than one occurrence, write the count **digit by digit**.
+4. Continue until `i` reaches the end of the array.
+5. Return `writeIndex` as the new length of the modified array.
+
+---
+```js
+function compress(chars) {
+    let writeIndex = 0; // Pointer to write compressed chars
+    let i = 0; // Pointer to traverse the array
+
+    while (i < chars.length) {
+        let char = chars[i];
+        let count = 0;
+
+        // Count occurrences of the current character
+        while (i < chars.length && chars[i] === char) {
+            i++;
+            count++;
+        }
+
+        // Write the character
+        chars[writeIndex] = char;
+        writeIndex++;
+
+        // Write the count if greater than 1
+        if (count > 1) {
+            for (let digit of count.toString()) {
+                chars[writeIndex] = digit;
+                writeIndex++;
+            }
+        }
+    }
+
+    return writeIndex; // New length of the array
+}
+
+// Example Test Cases
+console.log(compress(["a","a","b","b","c","c","c"])); // Output: 6 (["a","2","b","2","c","3"])
+console.log(compress(["a"])); // Output: 1 (["a"])
+console.log(compress(["a","b","b","b","b","b","b","b","b","b","b","b","b"])); // Output: 4 (["a","b","1","2"])
+```
+
+Brute force:
+
+```js
+var compress = function(chars) {
+   let imap = new Map();
+   if(chars.length == 1) return 1;
+   for(let i=0; i<chars.length; i++){     
+     if(!imap.has(chars[i])){
+        imap.set(chars[i], (imap.get(chars[i])||0) + 1)  
+     }else{
+       imap.set(chars[i], imap.get(chars[i]) + 1)  
+     }
+   }
+   
+   let arr = Array.from([...imap])
+   let newStr = arr.join().replace('1','').replaceAll(',','');
+   return newStr.split('').length;
+};
+```
+
+57. Minimum Window Substring Problem
+💡 **Problem Statement:**  
+Given two strings **s** and **t**, find the **smallest substring** in `s` that contains **all the characters of `t`** (including duplicates).  
+
+📌 **Example:**  
+```plaintext
+s = "ddaaabbca"  
+t = "abc"
+```
+✅ **Output:** `"bca"`
+
+---
+
+### **🔹 Approach: Sliding Window + Two Pointers**
+We use a **sliding window** technique with two pointers (`left` and `right`).
+
+#### **Step-by-Step Solution:**
+1. **Use a frequency map** to track required characters from `t`.
+2. **Expand the right pointer** to include characters until all `t` characters are found.
+3. **Shrink the left pointer** to minimize the window while maintaining all `t` characters.
+4. **Update the minimum window** whenever a valid substring is found.
+5. **Return the smallest valid window**.
+
+---
+
+### **📝 JavaScript Code (Two Pointers + Sliding Window)**
+```javascript
+function minWindow(s, t) {
+    if (s.length < t.length) return ""; // Edge case
+
+    let freqT = new Map(), freqS = new Map();
+    for (let char of t) freqT.set(char, (freqT.get(char) || 0) + 1);
+
+    let left = 0, minLength = Infinity, minStart = 0;
+    let required = freqT.size, formed = 0;
+
+    for (let right = 0; right < s.length; right++) {
+        let char = s[right];
+        freqS.set(char, (freqS.get(char) || 0) + 1);
+
+        if (freqT.has(char) && freqS.get(char) === freqT.get(char)) {
+            formed++;
+        }
+
+        while (formed === required) { // Shrink the window
+            if (right - left + 1 < minLength) {
+                minLength = right - left + 1;
+                minStart = left;
+            }
+
+            let leftChar = s[left];
+            freqS.set(leftChar, freqS.get(leftChar) - 1);
+            if (freqT.has(leftChar) && freqS.get(leftChar) < freqT.get(leftChar)) {
+                formed--;
+            }
+            left++;
+        }
+    }
+
+    return minLength === Infinity ? "" : s.substring(minStart, minStart + minLength);
+}
+
+// Example Usage
+let s = "ddaaabbca", t = "abc";
+console.log(minWindow(s, t)); // Output: "bca"
+```
+
+58. Isomorphic Strings - [Easy]
+
+```txt
+Given two strings s and t, determine if they are isomorphic.
+
+Two strings s and t are isomorphic if the characters in s can be replaced to get t.
+
+All occurrences of a character must be replaced with another character while preserving the order of characters. No two characters may map to the same character, but a character may map to itself.
+
+Example 1:
+
+Input: s = "egg", t = "add"
+
+Output: true
+
+Explanation:
+
+The strings s and t can be made identical by:
+
+Mapping 'e' to 'a'.
+Mapping 'g' to 'd'.
+Example 2:
+
+Input: s = "foo", t = "bar"
+
+Output: false
+
+Explanation:
+
+The strings s and t can not be made identical as 'o' needs to be mapped to both 'a' and 'r'.
+
+Example 3:
+
+Input: s = "paper", t = "title"
+
+Output: true
+
+ 
+
+Constraints:
+
+- 1 <= s.length <= 5 * 104
+- t.length == s.length
+- s and t consist of any valid ascii character.
+```
+```js
+/**
+ * @param {string} s
+ * @param {string} t
+ * @return {boolean}
+ */
+var isIsomorphic = function(s, t) {
+     // Mappings for s -> t and t -> s
+    const mappingSToT = new Map();
+    const mappingTToS = new Map();
+
+    for (let i = 0; i < s.length; i++) {
+        const charS = s[i];
+        const charT = t[i];
+
+        // Check if the mapping is consistent for s -> t
+        if (mappingSToT.has(charS)) {
+            if (mappingSToT.get(charS) !== charT) {
+                return false;
+            }
+        } else {
+            mappingSToT.set(charS, charT);
+        }
+
+        // Check if the mapping is consistent for t -> s
+        if (mappingTToS.has(charT)) {
+            if (mappingTToS.get(charT) !== charS) {
+                return false;
+            }
+        } else {
+            mappingTToS.set(charT, charS);
+        }
+    }
+    return true;
+};
+```
