@@ -1,4 +1,4 @@
-## SOLID 
+## SOLID - Fundamental
 
 [Solid - github/jafari-dev](https://github.com/jafari-dev/oop-expert-with-typescript)
 
