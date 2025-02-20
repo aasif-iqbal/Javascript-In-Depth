@@ -54,3 +54,6 @@ Microservices architecture is widely adopted in large-scale applications where f
 
 ## How to build simple microservice
 [Build Microservice architecture using Node js, MongoDB, Postgresql, Expressjs, JWT](https://www.youtube.com/watch?v=w3iXACKB_wQ&t=4156s)
+
+
+[Flow-diagram](https://whimsical.com/nodejs-microservice-with-sls-U8x7rhE232reoZEVhH6RrR)
