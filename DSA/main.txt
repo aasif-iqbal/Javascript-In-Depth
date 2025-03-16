@@ -2416,6 +2416,65 @@ console.log(rotateClockwise(arr,2))
 Output:
 [ 5, 6, 1, 2, 3, 4 ]
 
+-------------------------------------------------------------------------------------
+# Left Rotation (JavaScript):
+
+function leftRotate(arr, d) {
+  for (let i = 0; i < d; i++) {
+    let temp = arr.shift(); // Remove the first element
+    arr.push(temp);         // Append it to the end
+  }
+  return arr;
+}
+console.log(leftRotate([1, 2, 3, 4, 5], 2)); // Output: [3, 4, 5, 1, 2]
+
+# Right Rotation (JavaScript):
+function rightRotate(arr, d) {
+  for (let i = 0; i < d; i++) {
+    let temp = arr.pop();  // Remove the last element
+    arr.unshift(temp);     // Add it to the beginning
+  }
+  return arr;
+}
+console.log(rightRotate([1, 2, 3, 4, 5], 2)); // Output: [4, 5, 1, 2, 3]
+-------------------------------------------------------------------------------------
+# In-Place Rotation (Optimized for Space)
+Rotate the array without using additional space (in-place operations).
+
+Algorithm:
+1. Reverse the entire array.
+2. Reverse the first d elements.
+3. Reverse the remaining elements.
+
+Left Rotation (In-Place):
+function reverse(arr, start, end) {
+  while (start < end) {
+    [arr[start], arr[end]] = [arr[end], arr[start]]; // Swap elements
+    start++;
+    end--;
+  }
+}
+
+function leftRotate(arr, d) {
+  d = d % arr.length; // Handle cases where d > arr.length
+  reverse(arr, 0, arr.length - 1); // Step 1: Reverse entire array
+  reverse(arr, 0, arr.length - d - 1); // Step 2: Reverse first part
+  reverse(arr, arr.length - d, arr.length - 1); // Step 3: Reverse second part
+  return arr;
+}
+
+console.log(leftRotate([1, 2, 3, 4, 5], 2)); // Output: [3, 4, 5, 1, 2]
+function rightRotate(arr, d) {
+  d = d % arr.length; // Handle cases where d > arr.length
+  reverse(arr, 0, arr.length - 1); // Step 1: Reverse entire array
+  reverse(arr, 0, d - 1); // Step 2: Reverse first part
+  reverse(arr, d, arr.length - 1); // Step 3: Reverse second part
+  return arr;
+}
+
+console.log(rightRotate([1, 2, 3, 4, 5], 2)); // Output: [4, 5, 1, 2, 3]
+
+------------------------------------------------------------------------------
 
 56. Given an array of characters chars, compress it using the following algorithm:
 
