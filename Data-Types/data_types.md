@@ -1,4 +1,99 @@
-# JavaScript data types and data structures - 
+##  **What is a Data Type?**
+
+A **data type** defines the kind of value a variable can hold — like a number, a string, or an object. JavaScript is **dynamically typed**, which means you don’t have to specify a type — JS figures it out at runtime.
+
+```js
+let x = 42;       // number
+x = "hello";      // now a string!
+```
+
+---
+
+## 🧩 **Categories of Data Types in JavaScript**
+
+### 1. **Primitive Types (Immutable)**  
+These are simple and hold a **single value**.
+
+| Type       | Example           | Description                             |
+|------------|-------------------|-----------------------------------------|
+| `Number`   | `42`, `3.14`       | All numbers are 64-bit floating point   |
+| `String`   | `"hello"`          | Text inside quotes                      |
+| `Boolean`  | `true`, `false`    | Logical true or false                   |
+| `Undefined`| `let x;`           | Declared but not assigned               |
+| `Null`     | `let x = null;`    | Intentionally empty                     |
+| `Symbol`   | `Symbol("id")`     | Unique and immutable identifier         |
+| `BigInt`   | `123456789n`       | Large integers beyond `Number.MAX_SAFE_INTEGER` |
+
+---
+
+### 2. **Non-Primitive (Reference) Types**
+
+These are more complex, and store **references to memory locations**.
+
+| Type     | Example                              | Description                                |
+|----------|--------------------------------------|--------------------------------------------|
+| `Object` | `{ name: "Aasif", age: 30 }`         | Key-value pairs                            |
+| `Array`  | `[1, 2, 3]`                          | List-like object                           |
+| `Function`| `function() {}` or `() => {}`       | Executable code                            |
+| `Date`   | `new Date()`                         | Date and time                              |
+| `RegExp` | `/abc/`                              | Pattern matching                           |
+| `Map`, `Set`, `WeakMap`, `WeakSet` | Special collection types with advanced behavior |
+
+---
+
+## 🔍 How to Check a Type?
+
+### Using `typeof`:
+```js
+typeof 42         // "number"
+typeof "hello"    // "string"
+typeof true       // "boolean"
+typeof null       // ❗ "object" (historical bug in JS)
+typeof undefined  // "undefined"
+typeof {}         // "object"
+typeof []         // "object"
+typeof (() => {}) // "function"
+```
+
+### Using `Array.isArray()`:
+```js
+Array.isArray([]); // true
+```
+
+### Using `instanceof`:
+```js
+[] instanceof Array     // true
+{} instanceof Object    // true
+new Date() instanceof Date // true
+```
+
+---
+
+## ⚠️ Tricky Bits
+
+### ✅ `null` is **primitive**, but:
+```js
+typeof null === "object" // 😵 Known JavaScript quirk
+```
+
+### ✅ Arrays are objects:
+```js
+typeof [] === "object"
+Array.isArray([]) === true
+```
+
+---
+
+## 🧠 Summary Table
+
+| Category         | Type Names                             |
+|------------------|-----------------------------------------|
+| **Primitive**    | `number`, `string`, `boolean`, `null`, `undefined`, `symbol`, `bigint` |
+| **Non-Primitive**| `object`, `array`, `function`, `date`, `map`, `set`, etc.              |
+
+---
+
+## JavaScript data types and data structures - 
 [Primitive values - mdn](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#primitive_values)
 
 Primitive data type - immutable - value type
@@ -167,6 +262,7 @@ For example, given the expression "foo" + 1, the Number 1 is implicitly converte
 
 [Type_Conversion - mdn](https://developer.mozilla.org/en-US/docs/Glossary/Type_Conversion)
 
+[Data Type - mdn](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Data_structures)
 
 ## TypeScript
 [Typescript - Offical](https://www.typescriptlang.org/)
