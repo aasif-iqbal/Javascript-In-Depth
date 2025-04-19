@@ -70,3 +70,56 @@ Here:
 | **Reference**    | A link to where data is stored in memory |
 
 ---
+
+# For Interview
+
+## Call By Value 
+### 📘 **Definition of Call by Value (in JavaScript - Interview Friendly)**
+
+> **Call by Value** means that when a variable is passed to a function, **a copy of the variable's value** is passed. Changes made inside the function **do not affect** the original variable outside the function.
+
+---
+
+### ✅ Example:
+
+```js
+function update(num) {
+  num = num + 10;
+  console.log("Inside function:", num); // 20
+}
+
+let x = 10;
+update(x);
+console.log("Outside function:", x);    // 10
+```
+
+Here, `x` is passed **by value**, so `num` inside the function is just a **copy** of `x`. Changing `num` does **not** change `x`.
+
+---
+
+## Call By Reference
+### 📘 **Definition of Call by Reference (Interview-Friendly)**
+
+> **Call by Reference** means that when a variable (usually an object or array) is passed to a function, **a reference (memory address)** to the original value is passed. Changes made inside the function **directly affect** the original variable.
+
+---
+
+### ✅ Example:
+
+```js
+function update(obj) {
+  obj.name = "Updated";
+}
+
+let person = { name: "Aasif" };
+update(person);
+console.log(person.name); // Output: "Updated"
+```
+
+Here, the object `person` is passed **by reference**, so `obj` inside the function **refers to the same object in memory**. Any changes made to `obj` will reflect on `person`.
+
+---
+
+### 🧠 Note in JavaScript:
+- **Primitives** (`string`, `number`, `boolean`, `null`, `undefined`, `symbol`, `bigint`) → passed by **value**.
+- **Objects & Arrays** → passed by **reference**.
