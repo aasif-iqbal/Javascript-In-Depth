@@ -189,4 +189,4 @@ eventEmitter.on('orderPlaced', (data) => {
 - The **event broker** (EventEmitter) passes the message asynchronously.
 - The **event consumers** (Restaurant, Delivery Person, Customer Notification) handle the event when ready.
 
-This is **Event-Driven Architecture** in action! 🚀 Would you like an example with **Kafka or AWS SNS/SQS** for a production-like setup?
+This is **Event-Driven Architecture** in action! 🚀 Would you like an example with **Kafka or AWS SNS/SQS** for a production-like setup?  
