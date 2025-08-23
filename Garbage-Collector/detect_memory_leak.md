@@ -1,4 +1,11 @@
-## how to detect memory leak.
+## How to detect memory leak.
+
+## Real world memory leak example.
+https://www.youtube.com/watch?v=2UZcFDlNzWM&t=466s
+
+## Node js memory debugging using chrome! Learn to attach chrome debugger to nodejs to debug memory.
+
+https://www.youtube.com/watch?v=hliOMEQRqf8&t=816s
 
 Great follow-up 👍 Detecting a memory leak in JavaScript means finding out **which objects are not being garbage-collected** when they should be. Let’s go step by step:
 
