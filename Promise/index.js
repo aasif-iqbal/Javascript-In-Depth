@@ -1,10 +1,34 @@
+// Fake Network Request with setTimeout
+function fakeRequest(url) {
+  return new Promise((resolve, reject) => {
+    console.log(`Starting request to ${url}...`);
+
+    setTimeout(() => {
+      const success = Math.random() > 0.3; // 70% success, 30% fail
+      if (success) {
+        resolve({ status: 200, data: `Response from ${url}` });
+      } else {
+        reject(new Error(`Network error while fetching ${url}`));
+      }
+    }, 1000); // delay = 1 second
+  });
+}
+
+fakeRequest("https://api.example.com/user")
+  .then((res) => {
+    console.log("✅ Success:", res);
+  })
+  .catch((err) => {
+    console.error("❌ Error:", err.message);
+  });
+
+
 /*
 Here are some promise-based coding questions to solve, which will help you practice asynchronous JavaScript and Promises:
 
 1. **Fetch Data from API**:  
    Write a function `fetchUserData()` that returns a promise. This promise should fetch user data from an API (e.g., `https://jsonplaceholder.typicode.com/users`) and log the response data once resolved. If the request fails, handle the error gracefully and log an error message.
 */
-
 function fetchUserData() {
   return fetch(`https://jsonplaceholder.typicode.com/users`)
     .then((response) => {
