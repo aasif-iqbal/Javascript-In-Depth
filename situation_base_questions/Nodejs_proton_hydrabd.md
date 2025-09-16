@@ -241,7 +241,6 @@ async function fetchUserProfiles(userIds) {
 * **Exponential backoff retry** → `500ms → 1000ms → 2000ms`.
 * **Graceful error handling** → Returns `null` for failed calls, does not stop other requests.
 * **Reusable retry logic** → `fetchWithRetry` can wrap any async function.
-
 ---
 
 Would you like me to add **a concurrency limiter** (e.g., only 3 requests at a time) so this solution is safer for APIs with strict rate limits?
