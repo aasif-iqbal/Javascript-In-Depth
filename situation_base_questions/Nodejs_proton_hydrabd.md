@@ -175,8 +175,8 @@ async function main() {
 main().catch(console.error);
 ```
 
-### Solution (with any lib(setTimeout()))
-```js
+### Solution (with any lib(setTimeout())) - Simple
+
 Got it! Here’s the **JavaScript version** of the same solution (clean and production-ready):
 
 ```js
