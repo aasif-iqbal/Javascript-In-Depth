@@ -123,7 +123,7 @@ export const CustomerEmailHandler = async (event: SQSEvent) => {
 Would you like me to **add idempotency logic** (so the same SQS message isn’t processed twice if Lambda retries) — using DynamoDB to track processed message IDs? This is a common production best practice.
 
 ========
-
+h
 The code snippet shows an asynchronous call to `processNotifications()` with error handling using a `.catch()` block. It’s a good start, but there are a few ways to improve it for robustness, maintainability, and clarity. Below, I’ll explain the code, suggest improvements, and provide a complete example assuming a typical notification processing scenario.
 
 ### Understanding the Code
