@@ -174,7 +174,7 @@ async function main() {
 // Run example
 main().catch(console.error);
 ```
-
+## Simple way
 ### Solution (with any lib(setTimeout())) - Simple
 
 Got it! Here’s the **JavaScript version** of the same solution (clean and production-ready):
