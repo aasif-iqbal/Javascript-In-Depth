@@ -1,0 +1,17 @@
+0. For first time setup - npm install
+
+1. start docker enginee (ie docker desktop or use terminal)
+2. spin up  docker image (kafka and zookeeper) 
+    terminal > docker-compose up -d
+3. node orderService.js
+4. node inventoryService.js
+
+5. open postman
+curl -X POST http://localhost:4000/orders \
+-H "Content-Type: application/json" \
+-d '{"items":["laptop","phone"]}'
+
+
+client.id: Identifies an individual Kafka client (producer or consumer) for logging, monitoring, and debugging purposes. It's optional and not necessarily unique.
+
+group.id: Identifies a consumer group, enabling multiple consumers to work together to process messages from topics with shared offset management and fault tolerance. It's mandatory for consumers and must be unique for each distinct consumer group.
