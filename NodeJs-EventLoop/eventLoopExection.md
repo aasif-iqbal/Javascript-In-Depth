@@ -350,3 +350,32 @@ setTimeout inside I/O
 |----------|----------------|
 | **Directly in script** | `setTimeout()` → `setImmediate()` |
 | **Inside I/O callback (e.g., `fs.readFile()`)** | `setImmediate()` → `setTimeout()` |
+
+```js
+6. 
+console.log('1');
+
+setTimeout(() => {
+    console.log('2');
+}, 0);
+
+Promise.resolve('3').then((value)=> console.log(value));
+
+(async () => {
+ console.log('4');
+ await Promise.resolve();
+ console.log('5');
+})();
+
+console.log('6');
+
+/*
+Output:
+1
+4
+6
+3
+5
+2
+*/ 
+```
