@@ -1,4 +1,4 @@
-## Suppose we have api/v1/ and we are writing api/v2 for the same. there are some code writin in api/v1 that will need on api/v2 . Also we don't want to affect api/v1.and we add some code on api/v2. How do we write this.
+## Suppose we have api/v1/ and we are writing api/v2 for the same. there are some code written in api/v1 that will need on api/v2 . Also we don't want to affect api/v1.and we add some code on api/v2. How do we write this.
 
 To develop `api/v2` while reusing code from `api/v1` without affecting `api/v1` and adding new functionality to `api/v2`, you need a structured approach to code organization, versioning, and modularity. Below is a detailed guide on how to achieve this:
 
